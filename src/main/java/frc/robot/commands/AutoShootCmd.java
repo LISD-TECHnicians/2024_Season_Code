@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.Constants.LimelightConstants;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 
@@ -11,6 +12,8 @@ public class AutoShootCmd extends Command {
   private final IndexerSubsystem indexerSubsystem;
   private final LimelightSubsystem limelightSubsystem;
   // Also need subsystem to rotate bot
+
+  private double desiredPivotAngle;
 
   public AutoShootCmd(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, LimelightSubsystem limelightSubsystem) {
     this.shooterSubsystem = shooterSubsystem;
@@ -25,9 +28,7 @@ public class AutoShootCmd extends Command {
 
   @Override
   public void execute() {
-    // Add way to get needed angle from limelight
-
-    double desiredPivotAngle = 0;
+    desiredPivotAngle = limelightSubsystem.getTY(LimelightConstants.LL_ONE) + 10;
 
     shooterSubsystem.setPivotAngle(desiredPivotAngle);
     shooterSubsystem.setShooterSpeed();
