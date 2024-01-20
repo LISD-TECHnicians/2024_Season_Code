@@ -10,18 +10,18 @@ public class ManualShootCmd extends Command {
   private final ShooterSubsystem shooterSubsystem;
   private final IndexerSubsystem indexerSubsystem;
 
-  private final DoubleSupplier desiredShooterSpeed;
-  private final DoubleSupplier desiredPivotAngle;
-  private final DoubleSupplier desiredIndexerSpeed;
+  private final DoubleSupplier ShooterSpeed;
+  private final DoubleSupplier PivotAngle;
+  private final DoubleSupplier IndexerSpeed;
 
   public ManualShootCmd(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, 
-      DoubleSupplier desiredShooterSpeed, DoubleSupplier desiredPivotAngle, DoubleSupplier desiredIndexerSpeed) {
+      DoubleSupplier ShooterSpeed, DoubleSupplier PivotAngle, DoubleSupplier IndexerSpeed) {
     this.shooterSubsystem = shooterSubsystem;
     this.indexerSubsystem = indexerSubsystem;
 
-    this.desiredShooterSpeed = desiredShooterSpeed;
-    this.desiredPivotAngle = desiredPivotAngle;
-    this.desiredIndexerSpeed = desiredIndexerSpeed;
+    this.ShooterSpeed = ShooterSpeed;
+    this.PivotAngle = PivotAngle;
+    this.IndexerSpeed = IndexerSpeed;
 
     addRequirements(shooterSubsystem, indexerSubsystem);
   }
@@ -31,11 +31,11 @@ public class ManualShootCmd extends Command {
 
   @Override
   public void execute() {
-    shooterSubsystem.setPivotAngle(desiredPivotAngle.getAsDouble());
-    shooterSubsystem.setShooterSpeed(desiredShooterSpeed.getAsDouble());
+    shooterSubsystem.setPivotAngle(PivotAngle.getAsDouble());
+    shooterSubsystem.setShooterSpeed(ShooterSpeed.getAsDouble());
 
-    if (Math.abs(desiredPivotAngle.getAsDouble() - shooterSubsystem.getPivotAngle()) < 1.0) {
-      indexerSubsystem.setIndexerSpeed(desiredIndexerSpeed.getAsDouble());
+    if (Math.abs(PivotAngle.getAsDouble() - shooterSubsystem.getPivotAngle()) < 1.0) {
+      indexerSubsystem.setIndexerSpeed(IndexerSpeed.getAsDouble());
     }
   }
 

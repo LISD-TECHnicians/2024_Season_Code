@@ -13,8 +13,6 @@ public class AutoShootCmd extends Command {
   private final LimelightSubsystem limelightSubsystem;
   // Also need subsystem to rotate bot
 
-  private double desiredPivotAngle;
-
   public AutoShootCmd(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, LimelightSubsystem limelightSubsystem) {
     this.shooterSubsystem = shooterSubsystem;
     this.indexerSubsystem = indexerSubsystem;
@@ -28,12 +26,12 @@ public class AutoShootCmd extends Command {
 
   @Override
   public void execute() {
-    desiredPivotAngle = limelightSubsystem.getTY(LimelightConstants.LL_ONE) + 10;
+    double pivotAngle = limelightSubsystem.getTY(LimelightConstants.LL_ONE) + 10;
 
-    shooterSubsystem.setPivotAngle(desiredPivotAngle);
+    shooterSubsystem.setPivotAngle(pivotAngle);
     shooterSubsystem.setShooterSpeed();
 
-    if (Math.abs(desiredPivotAngle - shooterSubsystem.getPivotAngle()) < 1.0) {
+    if (Math.abs(pivotAngle - shooterSubsystem.getPivotAngle()) < 1.0) {
       indexerSubsystem.setIndexerSpeed();
     }
   }

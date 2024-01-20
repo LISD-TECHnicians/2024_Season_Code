@@ -25,6 +25,12 @@ public final class Constants {
 
     public static final int PIVOT_LEFT_ID = 19;
     public static final int PIVOT_RIGHT_ID = 20;
+
+    public static final double PIVOT_P = 1.0;
+    public static final double PIVOT_I = 1.0;
+    public static final double PIVOT_D = 1.0;
+
+    public static final int PIVOT_ENCODER_PORT = 0;
   }
 
   public static class ClimberConstants {
