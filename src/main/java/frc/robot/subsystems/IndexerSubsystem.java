@@ -1,11 +1,14 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IndexerConstants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class IndexerSubsystem extends SubsystemBase {
   private final CANSparkMax indexerLeft = new CANSparkMax(IndexerConstants.INDEXER_LEFT_ID, MotorType.kBrushless);
@@ -14,6 +17,8 @@ public class IndexerSubsystem extends SubsystemBase {
   private final DigitalInput notePresent = new DigitalInput(IndexerConstants.NOTE_PRESENT_PORT);
 
   public IndexerSubsystem() {
+    indexerLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
     indexerRight.follow(indexerLeft, true);
   }
 

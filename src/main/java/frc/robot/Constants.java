@@ -7,6 +7,10 @@ public final class Constants {
     public static final int CONTROLLER_2_PORT = 1;
   }
 
+  public static class DriveConstants {
+    public static final double NOMINAL_VOLTAGE = 12.0;
+  }
+
   public static class IntakeConstants {
     public static final int INTAKE_TOP_ID = 13;
     public static final int INTAKE_BOTTOM_ID = 14;
@@ -30,12 +34,14 @@ public final class Constants {
     public static final double PIVOT_I = 1.0;
     public static final double PIVOT_D = 1.0;
 
-    public static final int PIVOT_ENCODER_PORT = 0;
+    public static final double PIVOT_MAX_OUTPUT = 0.5;
   }
 
   public static class ClimberConstants {
     public static final int CLIMBER_LEFT_ID = 21;
     public static final int CLIMBER_RIGHT_ID = 22;
+
+    public static final int LOWER_LIMIT_PORT = 0;
   }
 
   public static class LimelightConstants {
