@@ -6,6 +6,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ShooterConstants;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.MathUtil;
@@ -20,9 +21,17 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final PIDController pivotPID = new PIDController(ShooterConstants.PIVOT_P, ShooterConstants.PIVOT_I, ShooterConstants.PIVOT_D);
 
+  // Encoder in Right SparkMax, Limits in Left SparkMax
+
   public ShooterSubsystem() {
     pivotLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
     shooterLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    pivotLeft.setSoftLimit(SoftLimitDirection.kForward, ShooterConstants.PIVOT_FORWARD_LIMIT);
+    pivotLeft.setSoftLimit(SoftLimitDirection.kReverse, ShooterConstants.PIVOT_REVERSE_LIMIT);
+
+    pivotLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
+    pivotLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     pivotRight.follow(pivotLeft, true);
     shooterRight.follow(shooterLeft, true);
@@ -41,7 +50,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public double getPivotAngle() {
-    return pivotLeft.getEncoder().getPosition(); //  convert to radians
+    return pivotRight.getEncoder().getPosition(); //  convert to radians
   }
 
   @Override

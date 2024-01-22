@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ClimberConstants;
@@ -10,17 +9,19 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
+
 public class ClimberSubsystem extends SubsystemBase {
   private final CANSparkMax climberLeft = new CANSparkMax(ClimberConstants.CLIMBER_LEFT_ID, MotorType.kBrushless);
   private final CANSparkMax climberRight = new CANSparkMax(ClimberConstants.CLIMBER_RIGHT_ID, MotorType.kBrushless);
-
-  private final DigitalInput LowerLimit = new DigitalInput(ClimberConstants.LOWER_LIMIT_PORT);
+  
+  private final SlewRateLimiter climberRateLimiter = new SlewRateLimiter(ClimberConstants.CLIMBER_RATE_LIMIT);
 
   public ClimberSubsystem() {
     climberLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
 
-    climberLeft.setSoftLimit(SoftLimitDirection.kForward, 0);
-    climberLeft.setSoftLimit(SoftLimitDirection.kReverse, 0);
+    climberLeft.setSoftLimit(SoftLimitDirection.kForward, ClimberConstants.CLIMBER_FORWARD_LIMIT);
+    climberLeft.setSoftLimit(SoftLimitDirection.kReverse, ClimberConstants.CLIMBER_REVERSE_LIMIT);
 
     climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
@@ -29,12 +30,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void setClimberSpeed(double speed) {
-    if (LowerLimit.get() == true && speed < 0) {
-      climberLeft.set(0);
-    }
-    else {
-      climberLeft.set(speed);
-    }
+    climberLeft.set(climberRateLimiter.calculate(speed));
   }
 
   @Override
