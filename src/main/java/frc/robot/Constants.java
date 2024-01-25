@@ -21,6 +21,8 @@ public final class Constants {
     public static final int INDEXER_RIGHT_ID = 16;
 
     public static final int NOTE_PRESENT_PORT = 1;
+
+    public static final double INDEXER_RATE_LIMIT = 3;
   }
 
   public static class ShooterConstants {
@@ -34,6 +36,9 @@ public final class Constants {
     public static final double PIVOT_I = 1.0;
     public static final double PIVOT_D = 1.0;
 
+    public static final float PIVOT_FORWARD_LIMIT = 0;
+    public static final float PIVOT_REVERSE_LIMIT = 0;
+
     public static final double PIVOT_MAX_OUTPUT = 0.5;
   }
 
@@ -41,7 +46,10 @@ public final class Constants {
     public static final int CLIMBER_LEFT_ID = 21;
     public static final int CLIMBER_RIGHT_ID = 22;
 
-    public static final int LOWER_LIMIT_PORT = 0;
+    public static final float CLIMBER_FORWARD_LIMIT = 0;
+    public static final float CLIMBER_REVERSE_LIMIT = 0;
+
+    public static final double CLIMBER_RATE_LIMIT = 3; 
   }
 
   public static class LimelightConstants {
