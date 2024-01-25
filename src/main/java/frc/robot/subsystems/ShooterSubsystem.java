@@ -28,10 +28,6 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterRight.follow(shooterLeft, true);
   }
 
-  public void setShooterSpeed() {
-    shooterLeft.set(1.0);
-  }
-
   public void setShooterSpeed(double speed) {
     shooterLeft.set(speed);
   }

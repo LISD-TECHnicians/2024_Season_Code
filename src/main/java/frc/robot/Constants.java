@@ -46,7 +46,7 @@ public final class Constants {
 
   public static class LimelightConstants {
     public static final String LL_ONE = "limelight-llone";
-    // public static final String LL_TWO = "limelight-lltwo";
+    public static final String LL_TWO = "limelight-lltwo";
     
     public static final int POSE_ESTIMATOR_PIPELINE = 0;
     public static final int AIM_PIPELINE = 1;

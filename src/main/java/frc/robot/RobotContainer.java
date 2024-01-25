@@ -11,7 +11,7 @@ import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-
+import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
 import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.RunClimberCmd;
@@ -29,6 +29,7 @@ public class RobotContainer {
 
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(shooterSubsystem, indexerSubsystem, limelightSubsystem);
   private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, indexerSubsystem, null, null, null);
+  private final AutoIntakeCmd autoIntakeNoAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, false);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, null);
   private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, null);
 

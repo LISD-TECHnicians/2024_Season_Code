@@ -17,10 +17,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
     intakeBottom.follow(intakeTop, true);
   }
-  
-  public void setIntakeSpeed() {
-    intakeTop.set(1.0);
-  }
 
   public void setIntakeSpeed(double speed) {
     intakeTop.set(speed);

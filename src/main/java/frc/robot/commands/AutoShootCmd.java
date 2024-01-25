@@ -29,10 +29,10 @@ public class AutoShootCmd extends Command {
     double pivotAngle = limelightSubsystem.getTY(LimelightConstants.LL_ONE) + 10;
 
     shooterSubsystem.setPivotAngle(pivotAngle);
-    shooterSubsystem.setShooterSpeed();
+    shooterSubsystem.setShooterSpeed(1);
 
     if (Math.abs(pivotAngle - shooterSubsystem.getPivotAngle()) < 1.0) {
-      indexerSubsystem.setIndexerSpeed();
+      indexerSubsystem.setIndexerSpeed(1);
     }
   }
 
