@@ -31,7 +31,7 @@ public class RobotContainer {
   private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, indexerSubsystem, null, null, null);
   private final AutoIntakeCmd autoIntakeNoAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, false);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, null);
-  private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, null);
+  private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, indexerSubsystem, null);
 
   public RobotContainer() {
     configureBindings();

@@ -6,6 +6,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IndexerConstants;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -22,6 +23,9 @@ public class IndexerSubsystem extends SubsystemBase {
 
   public IndexerSubsystem() {
     indexerLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    indexerLeft.setIdleMode(IdleMode.kBrake);
+    indexerRight.setIdleMode(IdleMode.kBrake);
 
     indexerRight.follow(indexerLeft, true);
   }

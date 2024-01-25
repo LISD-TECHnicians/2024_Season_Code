@@ -6,6 +6,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ShooterConstants;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
@@ -26,6 +27,12 @@ public class ShooterSubsystem extends SubsystemBase {
   public ShooterSubsystem() {
     pivotLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
     shooterLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    pivotLeft.setIdleMode(IdleMode.kBrake);
+    pivotRight.setIdleMode(IdleMode.kBrake);
+
+    shooterLeft.setIdleMode(IdleMode.kCoast);
+    shooterRight.setIdleMode(IdleMode.kCoast);
 
     pivotLeft.setSoftLimit(SoftLimitDirection.kForward, ShooterConstants.PIVOT_FORWARD_LIMIT);
     pivotLeft.setSoftLimit(SoftLimitDirection.kReverse, ShooterConstants.PIVOT_REVERSE_LIMIT);
