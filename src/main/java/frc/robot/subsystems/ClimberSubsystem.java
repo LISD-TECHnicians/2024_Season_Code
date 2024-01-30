@@ -6,6 +6,7 @@ import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -30,11 +31,17 @@ public class ClimberSubsystem extends SubsystemBase {
     climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
+    climberLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen).enableLimitSwitch(true);
+
     climberRight.follow(climberLeft, true);
   }
 
   public void setClimberSpeed(double speed) {
     climberLeft.set(climberRateLimiter.calculate(speed));
+  }
+
+  public boolean getLowerLimit() {
+    return climberLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen).isPressed();
   }
 
   @Override

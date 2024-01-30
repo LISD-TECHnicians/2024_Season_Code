@@ -2,11 +2,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-// import frc.robot.Constants.LimelightConstants;
-
 import frc.robot.LimelightHelpers;
-import edu.wpi.first.wpilibj.DriverStation;
 
+import frc.robot.Constants.LimelightConstants;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.math.geometry.Pose2d;
 
 public class LimelightSubsystem extends SubsystemBase {
@@ -14,6 +15,9 @@ public class LimelightSubsystem extends SubsystemBase {
 
   public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance().get();
+
+    setPipeline(LimelightConstants.LL_TWO, LimelightConstants.NOTE_DETECTION_PIPELINE);
+    setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
 
   public double getTX(String limelightName) {
@@ -43,6 +47,8 @@ public class LimelightSubsystem extends SubsystemBase {
     else {
       return LimelightHelpers.getBotPose2d_wpiRed(limelightName);
     }   
+
+    // return LimelightHelpers.getBotPose2d(limelightName);
   }
 
   public double getFiducialID(String limelightName) {
@@ -57,12 +63,13 @@ public class LimelightSubsystem extends SubsystemBase {
     return LimelightHelpers.getCurrentPipelineIndex(limelightName);
   }
 
-  @Override
-  public void periodic() {
-    /* System.out.println("Pose; " + getPose(LimelightConstants.LL_ONE) + " | " + 
-        "ID; " + getFiducialID(LimelightConstants.LL_ONE) + " | " + 
-        "Pipe; " + getPipeline(LimelightConstants.LL_ONE)); */
+  public double getTimeStamp(String limelightName) {
+    return Timer.getFPGATimestamp() - (LimelightHelpers.getLatency_Capture(limelightName) + 
+        LimelightHelpers.getLatency_Pipeline(limelightName)) / 1000;
   }
+
+  @Override
+  public void periodic() {}
 
   @Override
   public void simulationPeriodic() {}
