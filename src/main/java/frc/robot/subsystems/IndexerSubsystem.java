@@ -30,10 +30,6 @@ public class IndexerSubsystem extends SubsystemBase {
     indexerRight.follow(indexerLeft, true);
   }
 
-  public void setIndexerSpeed() {
-    indexerLeft.set(indexerRateLimiter.calculate(1.0));
-  }
-
   public void setIndexerSpeed(double speed) {
     indexerLeft.set(indexerRateLimiter.calculate(speed));
   }

@@ -16,7 +16,7 @@ public class LimelightSubsystem extends SubsystemBase {
   public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance().get();
 
-    setPipeline(LimelightConstants.LL_TWO, LimelightConstants.NOTE_DETECTION_PIPELINE);
+    setPipeline(LimelightConstants.LL_ONE, LimelightConstants.NOTE_DETECTION_PIPELINE);
     setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
 

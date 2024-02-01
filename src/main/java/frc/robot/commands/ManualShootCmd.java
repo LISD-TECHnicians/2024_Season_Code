@@ -4,26 +4,29 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class ManualShootCmd extends Command {
   private final ShooterSubsystem shooterSubsystem;
+  private final PivotSubsystem pivotSubsystem;
   private final IndexerSubsystem indexerSubsystem;
 
   private final DoubleSupplier ShooterSpeed;
   private final DoubleSupplier PivotAngle;
   private final DoubleSupplier IndexerSpeed;
 
-  public ManualShootCmd(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, 
+  public ManualShootCmd(ShooterSubsystem shooterSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
       DoubleSupplier ShooterSpeed, DoubleSupplier PivotAngle, DoubleSupplier IndexerSpeed) {
     this.shooterSubsystem = shooterSubsystem;
+    this.pivotSubsystem = pivotSubsystem;
     this.indexerSubsystem = indexerSubsystem;
 
     this.ShooterSpeed = ShooterSpeed;
     this.PivotAngle = PivotAngle;
     this.IndexerSpeed = IndexerSpeed;
 
-    addRequirements(shooterSubsystem, indexerSubsystem);
+    addRequirements(shooterSubsystem, pivotSubsystem, indexerSubsystem);
   }
 
   @Override
@@ -31,10 +34,10 @@ public class ManualShootCmd extends Command {
 
   @Override
   public void execute() {
-    shooterSubsystem.setPivotAngle(PivotAngle.getAsDouble());
+    pivotSubsystem.setPivotAngle(PivotAngle.getAsDouble());
     shooterSubsystem.setShooterSpeed(ShooterSpeed.getAsDouble());
 
-    if (Math.abs(PivotAngle.getAsDouble() - shooterSubsystem.getPivotAngle()) < 1.0) {
+    if (Math.abs(PivotAngle.getAsDouble() - pivotSubsystem.getPivotAngle()) < 1.0) {
       indexerSubsystem.setIndexerSpeed(IndexerSpeed.getAsDouble());
     }
   }

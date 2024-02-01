@@ -13,12 +13,15 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
+
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
+
 import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
 import frc.robot.commands.ManualShootCmd;
@@ -36,6 +39,7 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
 
   private final SwerveCmd joystickSwerve = new SwerveCmd(
       swerveSubsystem, 
@@ -43,8 +47,8 @@ public class RobotContainer {
       () -> -controller_1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
       () -> -controller_1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
       controller_1.L1());
-  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(shooterSubsystem, indexerSubsystem, limelightSubsystem);
-  private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, indexerSubsystem, null, null, null);
+  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem);
+  private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, null, null, null);
   private final AutoIntakeCmd autoIntakeNoAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, false);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, null);
   private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, indexerSubsystem, null);
@@ -54,7 +58,7 @@ public class RobotContainer {
   private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
-    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(shooterSubsystem, indexerSubsystem, limelightSubsystem));
+    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem));
     NamedCommands.registerCommand("Auto Intake", new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
 
     configureBindings();
