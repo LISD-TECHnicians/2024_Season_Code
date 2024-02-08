@@ -31,8 +31,6 @@ public class ClimberSubsystem extends SubsystemBase {
     climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    climberLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen).enableLimitSwitch(true);
-
     climberRight.follow(climberLeft, true);
   }
 
@@ -41,7 +39,11 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public boolean getLowerLimit() {
-    return climberLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen).isPressed();
+    return climberLeft.getEncoder().getPosition() == climberLeft.getSoftLimit(SoftLimitDirection.kReverse);
+  }
+
+  public boolean getUpperLimit() {
+    return climberLeft.getEncoder().getPosition() == climberLeft.getSoftLimit(SoftLimitDirection.kForward);
   }
 
   @Override

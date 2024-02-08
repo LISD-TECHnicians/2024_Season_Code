@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.DriveConstants;
@@ -13,7 +14,7 @@ public class ShooterSubsystem extends SubsystemBase {
   private final CANSparkMax shooterLeft = new CANSparkMax(ShooterConstants.SHOOTER_LEFT_ID, MotorType.kBrushless);
   private final CANSparkMax shooterRight = new CANSparkMax(ShooterConstants.SHOOTER_RIGHT_ID, MotorType.kBrushless);
 
-  // Encoder in Right SparkMax, Limits in Left SparkMax
+  private final SlewRateLimiter shooterRateLimiter = new SlewRateLimiter(ShooterConstants.SHOOTER_RATE_LIMIT);
 
   public ShooterSubsystem() {
     shooterLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
@@ -25,7 +26,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setShooterSpeed(double speed) {
-    shooterLeft.set(speed);
+    shooterLeft.set(shooterRateLimiter.calculate(speed));
   }
 
   @Override

@@ -125,6 +125,10 @@ public final class Constants {
     public static final int SHOOTER_LEFT_ID = 17;
     public static final int SHOOTER_RIGHT_ID = 18;
 
+    public static final double SHOOTER_RATE_LIMIT = 0.1;
+  }
+
+  public static final class PivotConstants {
     public static final int PIVOT_LEFT_ID = 19;
     public static final int PIVOT_RIGHT_ID = 20;
 
