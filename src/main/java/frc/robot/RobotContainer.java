@@ -31,8 +31,8 @@ import frc.robot.commands.SwerveCmd;
 
 
 public class RobotContainer {
-  private final CommandPS4Controller controller_1 = new CommandPS4Controller(ControllerConstants.CONTROLLER_1_PORT);
-  private final CommandPS4Controller controller_2 = new CommandPS4Controller(ControllerConstants.CONTROLLER_2_PORT);
+  private final CommandPS4Controller controller1 = new CommandPS4Controller(ControllerConstants.CONTROLLER_1_PORT);
+  private final CommandPS4Controller controller2 = new CommandPS4Controller(ControllerConstants.CONTROLLER_2_PORT);
 
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
@@ -44,13 +44,13 @@ public class RobotContainer {
 
   private final SwerveCmd joystickSwerve = new SwerveCmd(
       swerveSubsystem, 
-      () -> -controller_1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED, 
-      () -> -controller_1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
-      () -> -controller_1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
-      controller_1.L1());
+      () -> -controller1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED, 
+      () -> -controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
+      () -> -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
+      controller1.L1());
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem);
   private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, null, null, null);
-  private final AutoIntakeCmd autoIntakeNoAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, false);
+  private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, true);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, null);
   private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, indexerSubsystem, null);
 
@@ -64,11 +64,23 @@ public class RobotContainer {
 
     configureBindings();
 
+    swerveSubsystem.setDefaultCommand(joystickSwerve);
+
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chosoer", autoChooser);
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    // Driver Controls
+    controller1.button(0).debounce(ControllerConstants.DEBOUNCE_TIME).onTrue(autoRunShooterCmd);
+    controller1.button(1).debounce(ControllerConstants.DEBOUNCE_TIME).onTrue(autoIntakeAlignCmd);
+
+    controller1.button(2).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runIntakeCmd);
+
+    // Operator Controls
+    controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(manualRunShooterCmd);
+    controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
+  }
 
 
   public Command getAutonomousCommand() {

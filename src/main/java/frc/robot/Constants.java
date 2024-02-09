@@ -12,7 +12,9 @@ public final class Constants {
     public static final int CONTROLLER_1_PORT = 0;
     public static final int CONTROLLER_2_PORT = 1;
 
-    public static final double DEADBAND = 0.2; 
+    public static final double DEADBAND = 0.1; 
+    public static final double LIMIT_VARIABILITY = 0.1;
+    public static final double DEBOUNCE_TIME = 0.2;
   }
 
   public static class DriveConstants {
@@ -108,8 +110,9 @@ public final class Constants {
   }
 
   public static class IntakeConstants {
-    public static final int INTAKE_TOP_ID = 13;
-    public static final int INTAKE_BOTTOM_ID = 14;
+    public static final int INTAKE_ID = 13;
+
+    public static final double INTAKE_SPEED_FACTOR = 0.75;
   }
 
   public static class IndexerConstants {
@@ -118,7 +121,7 @@ public final class Constants {
 
     public static final int NOTE_PRESENT_PORT = 1;
 
-    public static final double INDEXER_RATE_LIMIT = 3;
+    public static final double INDEXER_SPEED_FACTOR = 0.3;
   }
 
   public static class ShooterConstants {
@@ -126,6 +129,7 @@ public final class Constants {
     public static final int SHOOTER_RIGHT_ID = 18;
 
     public static final double SHOOTER_RATE_LIMIT = 0.1;
+    public static final double SHOOTER_SPEED_FACTOR = 0.8;
   }
 
   public static final class PivotConstants {
@@ -140,6 +144,10 @@ public final class Constants {
     public static final float PIVOT_REVERSE_LIMIT = 0;
 
     public static final double PIVOT_MAX_OUTPUT = 0.5;
+
+    public static final double INTAKE_ANGLE = 46;
+    public static final double TRAVEL_ANGLE = 34;
+    public static final double CLIMBER_ANGLE = 56;
   }
 
   public static class ClimberConstants {
@@ -150,6 +158,8 @@ public final class Constants {
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
     public static final double CLIMBER_RATE_LIMIT = 3; 
+
+    public static final double CLIMBER_SPEED_FACTOR = 0.8;
   }
 
   public static class LimelightConstants {

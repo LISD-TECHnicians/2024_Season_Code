@@ -9,8 +9,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.math.filter.SlewRateLimiter;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class IndexerSubsystem extends SubsystemBase {
@@ -18,8 +16,6 @@ public class IndexerSubsystem extends SubsystemBase {
   private final CANSparkMax indexerRight = new CANSparkMax(IndexerConstants.INDEXER_RIGHT_ID, MotorType.kBrushless);
 
   private final DigitalInput notePresent = new DigitalInput(IndexerConstants.NOTE_PRESENT_PORT);
-
-  private final SlewRateLimiter indexerRateLimiter = new SlewRateLimiter(IndexerConstants.INDEXER_RATE_LIMIT);
 
   public IndexerSubsystem() {
     indexerLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
@@ -31,7 +27,7 @@ public class IndexerSubsystem extends SubsystemBase {
   }
 
   public void setIndexerSpeed(double speed) {
-    indexerLeft.set(indexerRateLimiter.calculate(speed));
+    indexerLeft.set(speed * IndexerConstants.INDEXER_SPEED_FACTOR);
   }
 
   public boolean getNotePresent() {

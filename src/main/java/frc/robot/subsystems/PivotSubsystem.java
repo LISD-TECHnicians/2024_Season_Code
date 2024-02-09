@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.PivotConstants;
 
@@ -41,7 +42,19 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public double getPivotAngle() {
-    return pivotRight.getEncoder().getPosition(); //  convert to radians
+    return pivotLeft.getEncoder().getPosition(); //  convert to radians
+  }
+
+  public boolean getIntakeReadiness() {
+    return Math.abs(getPivotAngle() - PivotConstants.INTAKE_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
+  }
+
+  public boolean getTravelReadiness() {
+    return Math.abs(getPivotAngle() - PivotConstants.TRAVEL_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
+  }
+
+  public boolean getClimberReadiness() {
+    return Math.abs(getPivotAngle() - PivotConstants.CLIMBER_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
   }
 
   @Override

@@ -3,10 +3,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ClimberConstants;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -35,15 +35,19 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void setClimberSpeed(double speed) {
-    climberLeft.set(climberRateLimiter.calculate(speed));
+    climberLeft.set(climberRateLimiter.calculate(speed) * ClimberConstants.CLIMBER_SPEED_FACTOR);
   }
 
-  public boolean getLowerLimit() {
-    return climberLeft.getEncoder().getPosition() == climberLeft.getSoftLimit(SoftLimitDirection.kReverse);
+  public double getClimberPosition() {
+    return climberLeft.getEncoder().getPosition();
   }
 
   public boolean getUpperLimit() {
-    return climberLeft.getEncoder().getPosition() == climberLeft.getSoftLimit(SoftLimitDirection.kForward);
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ControllerConstants.LIMIT_VARIABILITY;
+  }
+
+  public boolean getLowerLimit() {
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ControllerConstants.LIMIT_VARIABILITY;
   }
 
   @Override
