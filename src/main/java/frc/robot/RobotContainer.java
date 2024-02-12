@@ -49,11 +49,15 @@ public class RobotContainer {
       () -> -controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
       () -> -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
       controller1.L1());
-  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem);
-  private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true);
+  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, 
+      limelightSubsystem);
+  private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, indexerSubsystem, 
+      limelightSubsystem, true);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, () -> controller2.getLeftY());
-  private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, indexerSubsystem, () -> controller1.getRightY());
-  private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, () -> controller2.getLeftY(), controller2.button(2));
+  private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, 
+      () -> controller1.getRightY());
+  private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
+      () -> controller2.getLeftY(), controller2.button(2));
 
   private final Trigger limelightOverride = new Trigger(controller2.button(3));
 
@@ -62,9 +66,12 @@ public class RobotContainer {
   private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
-    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem));
-    NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
-    NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, false));
+    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, 
+        limelightSubsystem));
+    NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
+        indexerSubsystem, limelightSubsystem, true));
+    NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
+        indexerSubsystem, limelightSubsystem, false));
 
     configureBindings();
 

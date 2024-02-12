@@ -3,23 +3,30 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+
 import frc.robot.Constants.IndexerConstants;
+import frc.robot.Constants.PivotConstants;
+
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 
 public class ManualIntakeCmd extends Command {
   private final IntakeSubsystem intakeSubsystem;
+  private final PivotSubsystem pivotSubsystem;
   private final IndexerSubsystem indexerSubsystem;
 
   private final DoubleSupplier speed;
 
-  public ManualIntakeCmd(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem, DoubleSupplier speed) {
+  public ManualIntakeCmd(IntakeSubsystem intakeSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
+      DoubleSupplier speed) {
     this.intakeSubsystem = intakeSubsystem;
+    this.pivotSubsystem = pivotSubsystem;
     this.indexerSubsystem = indexerSubsystem;
 
     this.speed = speed;
 
-    addRequirements(intakeSubsystem, indexerSubsystem);
+    addRequirements(intakeSubsystem, pivotSubsystem, indexerSubsystem);
   }
 
   @Override
@@ -27,6 +34,8 @@ public class ManualIntakeCmd extends Command {
 
   @Override
   public void execute() {
+    pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
+
     intakeSubsystem.setIntakeSpeed(speed.getAsDouble());
     indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
   }
