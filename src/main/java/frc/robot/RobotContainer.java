@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
@@ -26,6 +27,7 @@ import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
 import frc.robot.commands.RunClimberCmd;
 import frc.robot.commands.ManualIntakeCmd;
+import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.SwerveCmd;
 
 
@@ -50,7 +52,10 @@ public class RobotContainer {
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem);
   private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true);
   private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, () -> controller2.getLeftY());
-  private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, indexerSubsystem, () -> controller2.getRightY());
+  private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, indexerSubsystem, () -> controller1.getRightY());
+  private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, () -> controller2.getLeftY(), controller2.button(2));
+
+  private final Trigger limelightOverride = new Trigger(controller2.button(3));
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
 
@@ -58,25 +63,26 @@ public class RobotContainer {
 
   public RobotContainer() {
     NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem));
-    NamedCommands.registerCommand("Auto Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
+    NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
+    NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, false));
 
     configureBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
+    intakeSubsystem.setDefaultCommand(runIntakeCmd);
+    climberSubsystem.setDefaultCommand(runClimberCmd);
 
     autoChooser = AutoBuilder.buildAutoChooser();
-    SmartDashboard.putData("Auto Chosoer", autoChooser);
+    SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   private void configureBindings() {
     // Driver Controls
-    controller1.button(0).debounce(ControllerConstants.DEBOUNCE_TIME).onTrue(autoRunShooterCmd);
-    controller1.button(1).debounce(ControllerConstants.DEBOUNCE_TIME).onTrue(autoIntakeAlignCmd);
-
-    controller1.button(2).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runIntakeCmd);
+    controller1.button(0).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoRunShooterCmd);
+    controller1.button(1).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoIntakeAlignCmd);
 
     // Operator Controls
-    controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
+    limelightOverride.whileTrue(runShooterCmd);
   }
 
 
