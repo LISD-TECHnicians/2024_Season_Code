@@ -53,10 +53,10 @@ public final class Constants {
 
     // Declare location of Swerve Modules relative to robot center 
     // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
-    public static final Translation2d FRONT_LEFT_LOCATION = new Translation2d(0.31, 0.31);
-    public static final Translation2d FRONT_RIGHT_LOCATION = new Translation2d(0.31, -0.31);
-    public static final Translation2d REAR_RIGHT_LOCATION = new Translation2d(-0.31, -0.31);
-    public static final Translation2d REAR_LEFT_LOCATION = new Translation2d(-0.31, 0.31);
+    public static final Translation2d FRONT_LEFT_LOCATION = new Translation2d(0.314, 0.295); 
+    public static final Translation2d FRONT_RIGHT_LOCATION = new Translation2d(0.314, -0.295); 
+    public static final Translation2d REAR_RIGHT_LOCATION = new Translation2d(-0.111, -0.295); 
+    public static final Translation2d REAR_LEFT_LOCATION = new Translation2d(-0.111, 0.295); 
 
     public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
       // Translation constants
@@ -72,7 +72,7 @@ public final class Constants {
 
     public static final double NOMINAL_VOLTAGE = 12.0;
 
-    public static final double SWERVE_RADIUS = 0.44; // m
+    public static final double SWERVE_RADIUS = 0.431; // m
 
     public static final double WHEEL_DIAMETER = 0.102;
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
