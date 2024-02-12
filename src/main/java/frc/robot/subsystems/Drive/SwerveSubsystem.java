@@ -3,12 +3,14 @@ package frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.ctre.phoenix6.configs.MountPoseConfigs;
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -69,7 +71,8 @@ public class SwerveSubsystem extends SubsystemBase {
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
-  // private final Pose2d initialPose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
+  private final PIDController swerveRotation = new PIDController(DriveConstants.CHASSIS_ROTATION_P, DriveConstants.CHASSIS_ROTATION_I, DriveConstants.CHASSIS_ROTATION_D);
+  private ChassisSpeeds rotationChassisSpeeds = new ChassisSpeeds();
 
   //  Declare Swerve Module Positions for SWerve Odometry
   private SwerveModulePosition frontLeftPosition = new SwerveModulePosition();
@@ -181,6 +184,16 @@ public class SwerveSubsystem extends SubsystemBase {
     frontRightSwerve.setDriveCoast(); 
     rearRightSwerve.setDriveCoast(); 
     rearLeftSwerve.setDriveCoast();
+  }
+
+  public void setSwerveRotation(double measurement, double setpoint) {
+    rotationChassisSpeeds.omegaRadiansPerSecond = swerveRotation.calculate(measurement, setpoint);
+    
+    setChassisSpeeds(rotationChassisSpeeds);
+  }
+
+  public boolean getRotationReadiness(double measurement, double setpoint) {
+    return Math.abs(measurement - setpoint) < ControllerConstants.LIMIT_VARIABILITY;
   }
 
   @Override

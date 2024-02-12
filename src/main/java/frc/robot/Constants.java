@@ -6,6 +6,7 @@ import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 
 public final class Constants {
   public static class ControllerConstants {
@@ -94,9 +95,9 @@ public final class Constants {
     public static final double MOTOR_ROTATION_I = 0.1; 
     public static final double MOTOR_ROTATION_D = 0.0;
 
-    public static final double ROTATION_POSITION_CONTROL_P = 1.0; // Needs tuned
-    public static final double ROTATION_POSITION_CONTROL_I = 5.0; 
-    public static final double ROTATION_POSITION_CONTROL_D = 0.0;    
+    public static final double CHASSIS_ROTATION_P = 5.0;
+    public static final double CHASSIS_ROTATION_I = 0.0;
+    public static final double CHASSIS_ROTATION_D = 0.0;
 
     public static final double PATH_TRANSLATION_P = 5.0;
     public static final double PATH_TRANSLATION_I = 0.0; 
@@ -107,12 +108,19 @@ public final class Constants {
     public static final double PATH_ROTATION_D = 0.0;
 
     public static final Pose2d ZERO_POSE = new Pose2d();
+
+    public static final ChassisSpeeds INTAKE_REVERSE_SPEED = new ChassisSpeeds(-1.0, 0, 0);
+
+    public static final double SWERVE_INTAKE_OFFSET = 2.0;
+    public static final double SWERVE_SHOOTER_OFFSET = 2.0;
   }
 
   public static class IntakeConstants {
     public static final int INTAKE_ID = 13;
 
     public static final double INTAKE_SPEED_FACTOR = 0.75;
+
+    public static final double INTAKE_DEFAULT_SPEED = 1.0;
   }
 
   public static class IndexerConstants {
@@ -122,14 +130,8 @@ public final class Constants {
     public static final int NOTE_PRESENT_PORT = 1;
 
     public static final double INDEXER_SPEED_FACTOR = 0.3;
-  }
 
-  public static class ShooterConstants {
-    public static final int SHOOTER_LEFT_ID = 17;
-    public static final int SHOOTER_RIGHT_ID = 18;
-
-    public static final double SHOOTER_RATE_LIMIT = 0.1;
-    public static final double SHOOTER_SPEED_FACTOR = 0.8;
+    public static final double INDEXER_DEFAULT_SPEED = 1.0;
   }
 
   public static final class PivotConstants {
@@ -145,9 +147,25 @@ public final class Constants {
 
     public static final double PIVOT_MAX_OUTPUT = 0.5;
 
+    public static final double PIVOT_GEAR_RATIO = 1/75;
+
+    public static final double PIVOT_INITIAL_ANGLE = 35;
+
+    public static final double PIVOT_SHOOTER_OFFSET = 0.0;
+
     public static final double INTAKE_ANGLE = 46;
     public static final double TRAVEL_ANGLE = 34;
     public static final double CLIMBER_ANGLE = 56;
+  }
+
+  public static class ShooterConstants {
+    public static final int SHOOTER_LEFT_ID = 17;
+    public static final int SHOOTER_RIGHT_ID = 18;
+
+    public static final double SHOOTER_RATE_LIMIT = 0.1;
+    public static final double SHOOTER_SPEED_FACTOR = 0.8;
+
+    public static final double SHOOTER_DEFAULT_SPEED = 1.0;
   }
 
   public static class ClimberConstants {

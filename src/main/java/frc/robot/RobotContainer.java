@@ -24,9 +24,8 @@ import frc.robot.subsystems.Drive.SwerveSubsystem;
 
 import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
-import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.RunClimberCmd;
-import frc.robot.commands.RunIntakeCmd;
+import frc.robot.commands.ManualIntakeCmd;
 import frc.robot.commands.SwerveCmd;
 
 
@@ -48,19 +47,18 @@ public class RobotContainer {
       () -> -controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
       () -> -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
       controller1.L1());
-  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem);
-  private final ManualShootCmd manualRunShooterCmd = new ManualShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, null, null, null);
-  private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, true);
-  private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, null);
-  private final RunIntakeCmd runIntakeCmd = new RunIntakeCmd(intakeSubsystem, indexerSubsystem, null);
+  private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem);
+  private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true);
+  private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, () -> controller2.getLeftY());
+  private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, indexerSubsystem, () -> controller2.getRightY());
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
 
   private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
-    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem));
-    NamedCommands.registerCommand("Auto Intake", new AutoIntakeCmd(intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
+    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, limelightSubsystem));
+    NamedCommands.registerCommand("Auto Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, indexerSubsystem, limelightSubsystem, true));
 
     configureBindings();
 
@@ -78,7 +76,6 @@ public class RobotContainer {
     controller1.button(2).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runIntakeCmd);
 
     // Operator Controls
-    controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(manualRunShooterCmd);
     controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
   }
 

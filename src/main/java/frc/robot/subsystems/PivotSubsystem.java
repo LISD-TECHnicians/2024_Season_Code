@@ -42,7 +42,11 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public double getPivotAngle() {
-    return pivotLeft.getEncoder().getPosition(); //  convert to radians
+    return pivotLeft.getEncoder().getPosition() * PivotConstants.PIVOT_GEAR_RATIO - PivotConstants.PIVOT_INITIAL_ANGLE; //  degrees
+  }
+
+  public boolean getShooterReadiness(double angle) {
+    return Math.abs(getPivotAngle() - angle) < ControllerConstants.LIMIT_VARIABILITY;
   }
 
   public boolean getIntakeReadiness() {

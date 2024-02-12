@@ -3,12 +3,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
 
-import frc.robot.Constants.DriveConstants;
-
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-
-import edu.wpi.first.math.controller.PIDController;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -22,9 +18,6 @@ public class SwerveCmd extends Command {
 
   private final BooleanSupplier robotOriented;
 
-  private final PIDController rotationPositionPID = new PIDController(DriveConstants.ROTATION_POSITION_CONTROL_P, 
-      DriveConstants.ROTATION_POSITION_CONTROL_I, DriveConstants.ROTATION_POSITION_CONTROL_D);
-
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); 
 
   public SwerveCmd(SwerveSubsystem swerveSubsystem, DoubleSupplier xController, DoubleSupplier yController, 
@@ -35,8 +28,6 @@ public class SwerveCmd extends Command {
     this.rotationController = rotationController;
 
     this.robotOriented = robotOriented;
-
-    rotationPositionPID.enableContinuousInput(-Math.PI, Math.PI);
 
     addRequirements(swerveSubsystem);
   }
