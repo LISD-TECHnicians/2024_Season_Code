@@ -3,7 +3,6 @@ package frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
-import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.ctre.phoenix6.configs.MountPoseConfigs;
@@ -193,7 +192,7 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public boolean getRotationReadiness(double measurement, double setpoint) {
-    return Math.abs(measurement - setpoint) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(measurement - setpoint) < DriveConstants.SWERVE_ROTATION_VARIABILITY;
   }
 
   @Override

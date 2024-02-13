@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.revrobotics.CANSparkMax;
@@ -43,11 +42,11 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public boolean getUpperLimit() {
-    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   public boolean getLowerLimit() {
-    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   @Override

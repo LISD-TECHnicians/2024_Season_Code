@@ -14,7 +14,6 @@ public final class Constants {
     public static final int CONTROLLER_2_PORT = 1;
 
     public static final double DEADBAND = 0.1; 
-    public static final double LIMIT_VARIABILITY = 0.1;
     public static final double DEBOUNCE_TIME = 0.2;
   }
 
@@ -113,6 +112,8 @@ public final class Constants {
 
     public static final double SWERVE_INTAKE_OFFSET = 2.0;
     public static final double SWERVE_SHOOTER_OFFSET = 2.0;
+
+    public static final double SWERVE_ROTATION_VARIABILITY = 2.0;
   }
 
   public static class IntakeConstants {
@@ -156,6 +157,8 @@ public final class Constants {
     public static final double INTAKE_ANGLE = 46;
     public static final double TRAVEL_ANGLE = 34;
     public static final double CLIMBER_ANGLE = 56;
+
+    public static final double PIVOT_VARIABILITY = 1.0;
   }
 
   public static class ShooterConstants {
@@ -178,6 +181,8 @@ public final class Constants {
     public static final double CLIMBER_RATE_LIMIT = 3; 
 
     public static final double CLIMBER_SPEED_FACTOR = 0.8;
+
+    public static final double CLIMBER_VARIABILITY = 0.2;
   }
 
   public static class LimelightConstants {

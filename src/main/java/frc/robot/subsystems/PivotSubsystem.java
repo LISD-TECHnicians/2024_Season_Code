@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.PivotConstants;
 
@@ -41,24 +40,28 @@ public class PivotSubsystem extends SubsystemBase {
     pivotLeft.set(MathUtil.clamp(pivotPID.calculate(getPivotAngle(), angle), -PivotConstants.PIVOT_MAX_OUTPUT, PivotConstants.PIVOT_MAX_OUTPUT));
   }
 
+  public double getPivotRawAngle(){
+    return pivotLeft.getEncoder().getPosition();
+  }
+
   public double getPivotAngle() {
-    return pivotLeft.getEncoder().getPosition() * PivotConstants.PIVOT_GEAR_RATIO - PivotConstants.PIVOT_INITIAL_ANGLE; //  degrees
+    return pivotLeft.getEncoder().getPosition() * PivotConstants.PIVOT_GEAR_RATIO + PivotConstants.PIVOT_INITIAL_ANGLE; //  degrees
   }
 
   public boolean getShooterReadiness(double angle) {
-    return Math.abs(getPivotAngle() - angle) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getPivotAngle() - angle) < PivotConstants.PIVOT_VARIABILITY;
   }
 
   public boolean getIntakeReadiness() {
-    return Math.abs(getPivotAngle() - PivotConstants.INTAKE_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getPivotAngle() - PivotConstants.INTAKE_ANGLE) < PivotConstants.PIVOT_VARIABILITY;
   }
 
   public boolean getTravelReadiness() {
-    return Math.abs(getPivotAngle() - PivotConstants.TRAVEL_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getPivotAngle() - PivotConstants.TRAVEL_ANGLE) < PivotConstants.PIVOT_VARIABILITY;
   }
 
   public boolean getClimberReadiness() {
-    return Math.abs(getPivotAngle() - PivotConstants.CLIMBER_ANGLE) < ControllerConstants.LIMIT_VARIABILITY;
+    return Math.abs(getPivotAngle() - PivotConstants.CLIMBER_ANGLE) < PivotConstants.PIVOT_VARIABILITY;
   }
 
   @Override
