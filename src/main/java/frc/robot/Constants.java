@@ -183,6 +183,8 @@ public final class Constants {
     public static final double CLIMBER_SPEED_FACTOR = 0.8;
 
     public static final double CLIMBER_VARIABILITY = 0.2;
+
+    public static final double CLIMBER_GEAR_RATIO = 1/20;
   }
 
   public static class LimelightConstants {
