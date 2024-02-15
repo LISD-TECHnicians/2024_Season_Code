@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IndexerConstants;
 import frc.robot.Constants.LimelightConstants;
@@ -13,6 +14,8 @@ import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class AutoShootCmd extends Command {
   private final SwerveSubsystem swerveSubsystem;
   private final PivotSubsystem pivotSubsystem;
@@ -20,6 +23,8 @@ public class AutoShootCmd extends Command {
   private final ShooterSubsystem shooterSubsystem;
   private final LimelightSubsystem limelightSubsystem;
   
+  private final Timer shooterTimer = new Timer();
+
   private double angle;
 
   public AutoShootCmd(SwerveSubsystem swerveSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
@@ -49,6 +54,8 @@ public class AutoShootCmd extends Command {
 
     if (pivotSubsystem.getShooterReadiness(angle) && swerveSubsystem.getRotationReadiness(limelightSubsystem.getTX(LimelightConstants.LL_TWO), DriveConstants.SWERVE_SHOOTER_OFFSET)) {
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
+
+      shooterTimer.restart();
     }
   }
 
@@ -58,10 +65,12 @@ public class AutoShootCmd extends Command {
     shooterSubsystem.setShooterSpeed(0.0);
 
     limelightSubsystem.setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
+
+    shooterTimer.stop();
   }
 
   @Override
   public boolean isFinished() {
-    return false;
+    return shooterTimer.get() > ShooterConstants.SHOOTER_TIME_DELAY;
   }
 }

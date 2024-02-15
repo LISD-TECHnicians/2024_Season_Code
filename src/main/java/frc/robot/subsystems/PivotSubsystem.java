@@ -33,6 +33,9 @@ public class PivotSubsystem extends SubsystemBase {
     pivotLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     pivotLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
+    pivotLeft.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
+    pivotRight.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
+
     pivotRight.follow(pivotLeft, true);
   }
 

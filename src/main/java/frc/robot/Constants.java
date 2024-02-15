@@ -146,6 +146,8 @@ public final class Constants {
     public static final float PIVOT_FORWARD_LIMIT = 0;
     public static final float PIVOT_REVERSE_LIMIT = 0;
 
+    public static final int PIVOT_CURRENT_LIMIT = 20;
+
     public static final double PIVOT_MAX_OUTPUT = 0.5;
 
     public static final double PIVOT_GEAR_RATIO = 1/75;
@@ -165,10 +167,11 @@ public final class Constants {
     public static final int SHOOTER_LEFT_ID = 17;
     public static final int SHOOTER_RIGHT_ID = 18;
 
-    public static final double SHOOTER_RATE_LIMIT = 0.1;
     public static final double SHOOTER_SPEED_FACTOR = 0.8;
 
     public static final double SHOOTER_DEFAULT_SPEED = 1.0;
+
+    public static final double SHOOTER_TIME_DELAY = 3.0;
   }
 
   public static class ClimberConstants {

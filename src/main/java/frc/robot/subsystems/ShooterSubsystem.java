@@ -9,13 +9,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.math.filter.SlewRateLimiter;
-
 public class ShooterSubsystem extends SubsystemBase {
   private final CANSparkMax shooterLeft = new CANSparkMax(ShooterConstants.SHOOTER_LEFT_ID, MotorType.kBrushless);
   private final CANSparkMax shooterRight = new CANSparkMax(ShooterConstants.SHOOTER_RIGHT_ID, MotorType.kBrushless);
-
-  private final SlewRateLimiter shooterRateLimiter = new SlewRateLimiter(ShooterConstants.SHOOTER_RATE_LIMIT);
 
   public ShooterSubsystem() {
     shooterLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
@@ -27,7 +23,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void setShooterSpeed(double speed) {
-    shooterLeft.set(shooterRateLimiter.calculate(speed) * ShooterConstants.SHOOTER_SPEED_FACTOR);
+    shooterLeft.set(speed * ShooterConstants.SHOOTER_SPEED_FACTOR);
   }
 
   @Override
