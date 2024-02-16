@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ClimberConstants;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import com.revrobotics.CANSparkMax;
@@ -19,7 +20,14 @@ public class ClimberSubsystem extends SubsystemBase {
   private final SlewRateLimiter climberRateLimiter = new SlewRateLimiter(ClimberConstants.CLIMBER_RATE_LIMIT);
 
   public ClimberSubsystem() {
+    climberLeft.restoreFactoryDefaults();
+    climberRight.restoreFactoryDefaults();
+
     climberLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    climberRight.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    climberLeft.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+    climberRight.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
 
     climberLeft.setIdleMode(IdleMode.kBrake);
     climberRight.setIdleMode(IdleMode.kBrake);

@@ -22,7 +22,14 @@ public class PivotSubsystem extends SubsystemBase {
   // Encoder in Right SparkMax, Limits in Left SparkMax
 
   public PivotSubsystem() {
+    pivotLeft.restoreFactoryDefaults();
+    pivotRight.restoreFactoryDefaults();
+
     pivotLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    pivotRight.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    pivotLeft.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
+    pivotRight.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
 
     pivotLeft.setIdleMode(IdleMode.kBrake);
     pivotRight.setIdleMode(IdleMode.kBrake);
@@ -32,9 +39,6 @@ public class PivotSubsystem extends SubsystemBase {
 
     pivotLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     pivotLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
-
-    pivotLeft.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
-    pivotRight.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
 
     pivotRight.follow(pivotLeft, true);
   }

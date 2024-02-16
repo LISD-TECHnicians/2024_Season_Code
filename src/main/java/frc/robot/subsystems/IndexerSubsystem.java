@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IndexerConstants;
 
@@ -18,7 +19,14 @@ public class IndexerSubsystem extends SubsystemBase {
   private final DigitalInput notePresent = new DigitalInput(IndexerConstants.NOTE_PRESENT_PORT);
 
   public IndexerSubsystem() {
+    indexerLeft.restoreFactoryDefaults();
+    indexerRight.restoreFactoryDefaults();
+
     indexerLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    indexerRight.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    indexerLeft.setSmartCurrentLimit(ControllerConstants.DEFAULT_550_CURRENT_LIMIT);
+    indexerRight.setSmartCurrentLimit(ControllerConstants.DEFAULT_550_CURRENT_LIMIT);
 
     indexerLeft.setIdleMode(IdleMode.kBrake);
     indexerRight.setIdleMode(IdleMode.kBrake);

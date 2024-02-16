@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IntakeConstants;
 
@@ -12,7 +13,11 @@ public class IntakeSubsystem extends SubsystemBase {
   private final CANSparkMax intake = new CANSparkMax(IntakeConstants.INTAKE_ID, MotorType.kBrushless);
 
   public IntakeSubsystem() {
+    intake.restoreFactoryDefaults();
+
     intake.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+
+    intake.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
   }
 
   public void setIntakeSpeed(double speed) {

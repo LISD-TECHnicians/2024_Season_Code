@@ -52,7 +52,8 @@ public class AutoShootCmd extends Command {
 
     shooterSubsystem.setShooterSpeed(ShooterConstants.SHOOTER_DEFAULT_SPEED);
 
-    if (pivotSubsystem.getShooterReadiness(angle) && swerveSubsystem.getRotationReadiness(limelightSubsystem.getTX(LimelightConstants.LL_TWO), DriveConstants.SWERVE_SHOOTER_OFFSET)) {
+    if (pivotSubsystem.getShooterReadiness(angle) && shooterSubsystem.getShooterSpeed() == ShooterConstants.SHOOTER_DEFAULT_SPEED &&
+        swerveSubsystem.getRotationReadiness(limelightSubsystem.getTX(LimelightConstants.LL_TWO), DriveConstants.SWERVE_SHOOTER_OFFSET)) {
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
 
       shooterTimer.restart();
