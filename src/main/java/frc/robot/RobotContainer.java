@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
-
+import frc.robot.Constants.LimelightConstants;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -25,7 +25,7 @@ import frc.robot.subsystems.Drive.SwerveSubsystem;
 
 import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
-import frc.robot.commands.RunClimberCmd;
+import frc.robot.commands.ManualClimberCmd;
 import frc.robot.commands.ManualIntakeCmd;
 import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.SwerveCmd;
@@ -53,9 +53,9 @@ public class RobotContainer {
       limelightSubsystem);
   private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, indexerSubsystem, 
       limelightSubsystem, true);
-  private final RunClimberCmd runClimberCmd = new RunClimberCmd(climberSubsystem, () -> controller2.getLeftY());
+  private final ManualClimberCmd runClimberCmd = new ManualClimberCmd(climberSubsystem, () -> controller2.getLeftY());
   private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, 
-      () -> controller1.getRightY());
+      () -> controller1.getR2Axis());
   private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
       () -> controller2.getLeftY(), controller2.button(2));
 
@@ -89,7 +89,7 @@ public class RobotContainer {
     controller1.button(1).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoIntakeAlignCmd);
 
     // Operator Controls
-    limelightOverride.whileTrue(runShooterCmd);
+    limelightOverride.debounce(LimelightConstants.LL_OVERRIDE_DEBOUNCE).whileTrue(runShooterCmd);
   }
 
 

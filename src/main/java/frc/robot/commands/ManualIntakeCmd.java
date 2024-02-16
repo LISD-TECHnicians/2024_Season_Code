@@ -36,8 +36,10 @@ public class ManualIntakeCmd extends Command {
   public void execute() {
     pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
 
-    intakeSubsystem.setIntakeSpeed(speed.getAsDouble());
-    indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
+    if (pivotSubsystem.getIntakeReadiness()) {
+      intakeSubsystem.setIntakeSpeed(speed.getAsDouble());
+      indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
+    }
   }
 
   @Override
