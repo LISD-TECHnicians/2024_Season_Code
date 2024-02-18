@@ -41,6 +41,9 @@ public class PivotSubsystem extends SubsystemBase {
     pivotLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     pivotRight.follow(pivotLeft, true);
+
+    pivotLeft.burnFlash();
+    pivotRight.burnFlash();
   }
 
   public void setPivotAngle(double angle) {

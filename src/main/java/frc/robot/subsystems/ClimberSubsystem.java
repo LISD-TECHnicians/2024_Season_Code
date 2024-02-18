@@ -39,26 +39,25 @@ public class ClimberSubsystem extends SubsystemBase {
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     climberRight.follow(climberLeft, true);
+
+    climberLeft.burnFlash();
+    climberRight.burnFlash();
   }
 
   public void setClimberSpeed(double speed) {
     climberLeft.set(climberRateLimiter.calculate(speed) * ClimberConstants.CLIMBER_SPEED_FACTOR);
   }
 
-  public double getClimberRawPosition() {
+  public double getClimberPosition() {
     return climberLeft.getEncoder().getPosition();
   }
 
-  public double getClimberPosition() {
-    return climberLeft.getEncoder().getPosition() * ClimberConstants.CLIMBER_GEAR_RATIO;
-  }
-
   public boolean getUpperLimit() {
-    return Math.abs(getClimberRawPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ClimberConstants.CLIMBER_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   public boolean getLowerLimit() {
-    return Math.abs(getClimberRawPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ClimberConstants.CLIMBER_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   @Override

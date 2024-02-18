@@ -18,6 +18,8 @@ public class IntakeSubsystem extends SubsystemBase {
     intake.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
 
     intake.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+
+    intake.burnFlash();
   }
 
   public void setIntakeSpeed(double speed) {

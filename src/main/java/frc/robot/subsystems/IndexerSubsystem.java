@@ -32,6 +32,9 @@ public class IndexerSubsystem extends SubsystemBase {
     indexerRight.setIdleMode(IdleMode.kBrake);
 
     indexerRight.follow(indexerLeft, true);
+
+    indexerLeft.burnFlash();
+    indexerRight.burnFlash();
   }
 
   public void setIndexerSpeed(double speed) {

@@ -28,6 +28,9 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterRight.setIdleMode(IdleMode.kCoast);
 
     shooterRight.follow(shooterLeft, true);
+
+    shooterLeft.burnFlash();
+    shooterRight.burnFlash();
   }
 
   public void setShooterSpeed(double speed) {

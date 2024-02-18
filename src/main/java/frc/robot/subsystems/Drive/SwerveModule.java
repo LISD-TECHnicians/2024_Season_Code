@@ -63,6 +63,8 @@ public class SwerveModule {
 
     // Pevents rotation motor from rotating more than 90 deg
     rotationPID.enableContinuousInput(-Math.PI, Math.PI);
+
+    rotationMotor.burnFlash();
   }
 
   public double getDrivePosition() { // Returns meters
