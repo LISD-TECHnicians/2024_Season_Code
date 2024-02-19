@@ -24,7 +24,7 @@ public final class Constants {
     public static final int FRONT_LEFT_DRIVE_ID = 9;
     public static final int FRONT_LEFT_ROTATION_ID = 12;
     public static final int FRONT_LEFT_ROTATION_ENCODER_ID = 5;
-    public static final double FRONT_LEFT_ANGLE_OFFSET = 1.836;
+    public static final double FRONT_LEFT_ANGLE_OFFSET = 0.840;
     public static final boolean FRONT_LEFT_DRIVE_MOTOR_INVERT = false;
     public static final boolean FRONT_LEFT_ROTATION_MOTOR_INVERT = true;
     public static final boolean FRONT_LEFT_ROTATION_ENCODER_INVERT = false;
@@ -32,7 +32,7 @@ public final class Constants {
     public static final int FRONT_RIGHT_DRIVE_ID = 6;
     public static final int FRONT_RIGHT_ROTATION_ID = 13;
     public static final int FRONT_RIGHT_ROTATION_ENCODER_ID = 2;
-    public static final double FRONT_RIGHT_ANGLE_OFFSET = 2.029;
+    public static final double FRONT_RIGHT_ANGLE_OFFSET = 1.459;
     public static final boolean FRONT_RIGHT_DRIVE_MOTOR_INVERT = true;
     public static final boolean FRONT_RIGHT_ROTATION_MOTOR_INVERT = true;
     public static final boolean FRONT_RIGHT_ROTATION_ENCODER_INVERT = false;
@@ -40,7 +40,7 @@ public final class Constants {
     public static final int REAR_RIGHT_DRIVE_ID = 8;
     public static final int REAR_RIGHT_ROTATION_ID = 10;
     public static final int REAR_RIGHT_ROTATION_ENCODER_ID = 4;
-    public static final double REAR_RIGHT_ANGLE_OFFSET = 3.015; // In radians
+    public static final double REAR_RIGHT_ANGLE_OFFSET = 1.844; // In radians
     public static final boolean REAR_RIGHT_DRIVE_MOTOR_INVERT = true;
     public static final boolean REAR_RIGHT_ROTATION_MOTOR_INVERT = true;
     public static final boolean REAR_RIGHT_ROTATION_ENCODER_INVERT = false;
@@ -48,7 +48,7 @@ public final class Constants {
     public static final int REAR_LEFT_DRIVE_ID = 7;
     public static final int REAR_LEFT_ROTATION_ID = 11;
     public static final int REAR_LEFT_ROTATION_ENCODER_ID = 3;
-    public static final double REAR_LEFT_ANGLE_OFFSET = -0.721;
+    public static final double REAR_LEFT_ANGLE_OFFSET = 1.924;
     public static final boolean REAR_LEFT_DRIVE_MOTOR_INVERT = false;
     public static final boolean REAR_LEFT_ROTATION_MOTOR_INVERT = true;
     public static final boolean REAR_LEFT_ROTATION_ENCODER_INVERT = false;
@@ -85,7 +85,7 @@ public final class Constants {
     public static final double DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND = DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
 
     public static final double MAX_DRIVE_SPEED = 4.97; // Max possible m/s
-    public static final double MAX_DRIVE_SET_ACCELERATION = 10; // Max choosen m/s^2
+    public static final double MAX_DRIVE_SET_ACCELERATION = 20; // Max choosen m/s^2
 
     public static final double MAX_POSSIBLE_ROTATION_SPEED = MAX_DRIVE_SPEED / SWERVE_RADIUS;
 
@@ -93,8 +93,8 @@ public final class Constants {
 
     public static final double MAX_SET_ROTATION_SPEED = MAX_POSSIBLE_ROTATION_SPEED * ROTATION_SPEED_SCALE_FACTOR;
 
-    public static final double MOTOR_ROTATION_P = 0.1;
-    public static final double MOTOR_ROTATION_I = 0.1; 
+    public static final double MOTOR_ROTATION_P = 0.4;
+    public static final double MOTOR_ROTATION_I = 0.3; 
     public static final double MOTOR_ROTATION_D = 0.0;
 
     public static final double CHASSIS_ROTATION_P = 5.0;
@@ -109,6 +109,8 @@ public final class Constants {
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
+    public static final double DRIVE_VOLTAGE_DEADBAND = 3.0;
+
     public static final Pose2d ZERO_POSE = new Pose2d();
 
     public static final ChassisSpeeds INTAKE_REVERSE_SPEED = new ChassisSpeeds(-1.0, 0, 0);
@@ -122,7 +124,7 @@ public final class Constants {
   public static class IntakeConstants {
     public static final int INTAKE_ID = 15;
 
-    public static final double INTAKE_SPEED_FACTOR = 0.75;
+    public static final double INTAKE_SPEED_FACTOR = 0.85;
 
     public static final double INTAKE_DEFAULT_SPEED = 1.0;
   }
@@ -181,12 +183,10 @@ public final class Constants {
     public static final int CLIMBER_LEFT_ID = 22;
     public static final int CLIMBER_RIGHT_ID = 23;
 
-    public static final float CLIMBER_FORWARD_LIMIT = 0;
+    public static final float CLIMBER_FORWARD_LIMIT = 95;
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
-    public static final double CLIMBER_RATE_LIMIT = 3; 
-
-    public static final double CLIMBER_SPEED_FACTOR = 0.8;
+    public static final double CLIMBER_SPEED_FACTOR = 0.75;
 
     public static final double CLIMBER_VARIABILITY = 0.2;
   }

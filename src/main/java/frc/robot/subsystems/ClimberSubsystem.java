@@ -11,13 +11,9 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.math.filter.SlewRateLimiter;
-
 public class ClimberSubsystem extends SubsystemBase {
   private final CANSparkMax climberLeft = new CANSparkMax(ClimberConstants.CLIMBER_LEFT_ID, MotorType.kBrushless);
   private final CANSparkMax climberRight = new CANSparkMax(ClimberConstants.CLIMBER_RIGHT_ID, MotorType.kBrushless);
-  
-  private final SlewRateLimiter climberRateLimiter = new SlewRateLimiter(ClimberConstants.CLIMBER_RATE_LIMIT);
 
   public ClimberSubsystem() {
     climberLeft.restoreFactoryDefaults();
@@ -38,14 +34,16 @@ public class ClimberSubsystem extends SubsystemBase {
     climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    climberRight.follow(climberLeft, true);
+    climberLeft.setInverted(true);
+
+    climberRight.follow(climberLeft, false);
 
     climberLeft.burnFlash();
     climberRight.burnFlash();
   }
 
   public void setClimberSpeed(double speed) {
-    climberLeft.set(climberRateLimiter.calculate(speed) * ClimberConstants.CLIMBER_SPEED_FACTOR);
+    climberLeft.set(speed * ClimberConstants.CLIMBER_SPEED_FACTOR);
   }
 
   public double getClimberPosition() {

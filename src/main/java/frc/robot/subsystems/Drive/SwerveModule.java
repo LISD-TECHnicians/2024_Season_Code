@@ -1,5 +1,6 @@
 package frc.robot.subsystems.Drive;
 
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import edu.wpi.first.math.MathUtil;
@@ -51,7 +52,9 @@ public class SwerveModule {
 
     rotationEncoder.getConfigurator().apply(new CANcoderConfiguration());
 
-    driveMotor.setNeutralMode(NeutralModeValue.Coast);
+    rotationMotor.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+
+    driveMotor.setNeutralMode(NeutralModeValue.Brake);
     rotationMotor.setIdleMode(IdleMode.kBrake);
 
     this.rotationEncoderInvert = rotationEncoderInvert;
@@ -95,12 +98,12 @@ public class SwerveModule {
 
     double driveSpeed = driveLimiter.calculate(swerveModuleState.speedMetersPerSecond);
     driveSpeed = DriveConstants.NOMINAL_VOLTAGE * driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
-    driveSpeed = driveSpeed > 1.0 ? driveSpeed : 0;
+    driveSpeed = Math.abs(driveSpeed) > DriveConstants.DRIVE_VOLTAGE_DEADBAND ? driveSpeed : 0;
 
     double rotationSpeed = rotationPID.calculate(getRotationPosition(), swerveModuleState.angle.getRadians());
     rotationSpeed = DriveConstants.NOMINAL_VOLTAGE * MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
         DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
-    rotationSpeed = rotationSpeed > 1.0 ? rotationSpeed : 0;
+    rotationSpeed = Math.abs(rotationSpeed) > DriveConstants.DRIVE_VOLTAGE_DEADBAND ? rotationSpeed : 0;
 
     driveMotor.setVoltage(driveSpeed);
     rotationMotor.setVoltage(rotationSpeed);
