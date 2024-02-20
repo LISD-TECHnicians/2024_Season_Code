@@ -124,10 +124,9 @@ public final class Constants {
   public static class IntakeConstants {
     public static final int INTAKE_ID = 15;
 
-    public static final int INTAKE_CURRENT_LIMIT = 40;
+    public static final int INTAKE_CURRENT_LIMIT = 25;
 
-    public static final double INTAKE_SPEED_FACTOR = 0.85;
-
+    public static final double INTAKE_SPEED_FACTOR = 0.80;
     public static final double INTAKE_DEFAULT_SPEED = 1.0;
   }
 
@@ -135,12 +134,11 @@ public final class Constants {
     public static final int INDEXER_LEFT_ID = 16;
     public static final int INDEXER_RIGHT_ID = 17;
 
-    public static final int INDEXER_CURRENT_LIMIT = 20;
+    public static final int INDEXER_CURRENT_LIMIT = 10;
 
     public static final int NOTE_PRESENT_PORT = 1;
 
     public static final double INDEXER_SPEED_FACTOR = 0.3;
-
     public static final double INDEXER_DEFAULT_SPEED = 1.0;
   }
 
@@ -176,10 +174,9 @@ public final class Constants {
     public static final int SHOOTER_LEFT_ID = 20;
     public static final int SHOOTER_RIGHT_ID = 21;
 
-    public static final int SHOOTER_CURRENT_LIMIT = 40;
+    public static final int SHOOTER_CURRENT_LIMIT = 20;
 
     public static final double SHOOTER_SPEED_FACTOR = 0.8;
-
     public static final double SHOOTER_DEFAULT_SPEED = 1.0;
 
     public static final double SHOOTER_TIME_DELAY = 3.0;
@@ -195,6 +192,7 @@ public final class Constants {
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
     public static final double CLIMBER_SPEED_FACTOR = 0.75;
+    public static final double CLIMBER_DOWN_SPEED_FACTOR = 0.60;
 
     public static final double CLIMBER_VARIABILITY = 0.2;
   }

@@ -45,19 +45,21 @@ public class RobotContainer {
 
   private final SwerveCmd joystickSwerve = new SwerveCmd(
       swerveSubsystem, 
-      () -> -controller1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED, 
-      () -> -controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED, 
-      () -> -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED,
+      () -> -controller1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED * controller1.getLeftY() >= ControllerConstants.DEADBAND ? 1.0 : 0.0, 
+      () -> -controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED * controller1.getLeftX() >= ControllerConstants.DEADBAND ? 1.0 : 0.0, 
+      () -> -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED * controller1.getRightX() >= ControllerConstants.DEADBAND ? 
+          1.0 : 0.0,
       controller1.L1());
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(swerveSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem, 
       limelightSubsystem);
   private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, indexerSubsystem, 
       limelightSubsystem, true);
-  private final ManualClimberCmd runClimberCmd = new ManualClimberCmd(climberSubsystem, () -> -controller2.getLeftY());
+  private final ManualClimberCmd runClimberCmd = new ManualClimberCmd(climberSubsystem, () -> -controller2.getLeftY() * 
+      controller2.getLeftY() >= ControllerConstants.DEADBAND ? 1.0 : 0.0);
   private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem,
       controller1.R1());
   private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
-      () -> controller2.getLeftY(), controller2.button(2));
+      () -> controller2.getLeftY() * controller2.getLeftY() >= ControllerConstants.DEADBAND ? 1.0 : 0.0, controller2.button(2));
 
   private final Trigger limelightOverride = new Trigger(controller2.button(3));
 
