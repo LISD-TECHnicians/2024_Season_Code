@@ -38,7 +38,7 @@ public class ManualIntakeCmd extends Command {
     pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
 
     if (pivotSubsystem.getIntakeReadiness()) {
-      intakeSubsystem.setIntakeSpeed(speed.getAsBoolean() ? IntakeConstants.INTAKE_SPEED_FACTOR : 0);
+      intakeSubsystem.setIntakeSpeed(speed.getAsBoolean() ? IntakeConstants.INTAKE_DEFAULT_SPEED : 0.0);
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
     }
   }

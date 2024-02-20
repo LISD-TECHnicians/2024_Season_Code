@@ -16,8 +16,7 @@ public final class Constants {
     public static final double DEADBAND = 0.1; 
     public static final double DEBOUNCE_TIME = 0.2;
 
-    public static final int DEFAULT_NEO_CURRENT_LIMIT = 40;
-    public static final int DEFAULT_550_CURRENT_LIMIT = 20;
+    public static final double NOMINAL_VOLTAGE = 11.0;
   }
 
   public static class DriveConstants {
@@ -72,7 +71,8 @@ public final class Constants {
 
     public static final int PIGEON_ID = 14;
 
-    public static final double NOMINAL_VOLTAGE = 12.0;
+    public static final int DRIVE_CURRENT_LIMIT = 40;
+    public static final int ROTATION_CURRENT_LIMIT = 40;
 
     public static final double SWERVE_RADIUS = 0.431; // m
 
@@ -124,6 +124,8 @@ public final class Constants {
   public static class IntakeConstants {
     public static final int INTAKE_ID = 15;
 
+    public static final int INTAKE_CURRENT_LIMIT = 40;
+
     public static final double INTAKE_SPEED_FACTOR = 0.85;
 
     public static final double INTAKE_DEFAULT_SPEED = 1.0;
@@ -132,6 +134,8 @@ public final class Constants {
   public static class IndexerConstants {
     public static final int INDEXER_LEFT_ID = 16;
     public static final int INDEXER_RIGHT_ID = 17;
+
+    public static final int INDEXER_CURRENT_LIMIT = 20;
 
     public static final int NOTE_PRESENT_PORT = 1;
 
@@ -172,6 +176,8 @@ public final class Constants {
     public static final int SHOOTER_LEFT_ID = 20;
     public static final int SHOOTER_RIGHT_ID = 21;
 
+    public static final int SHOOTER_CURRENT_LIMIT = 40;
+
     public static final double SHOOTER_SPEED_FACTOR = 0.8;
 
     public static final double SHOOTER_DEFAULT_SPEED = 1.0;
@@ -182,6 +188,8 @@ public final class Constants {
   public static class ClimberConstants {
     public static final int CLIMBER_LEFT_ID = 22;
     public static final int CLIMBER_RIGHT_ID = 23;
+
+    public static final int CLIMBER_CURRENT_LIMIT = 20;
 
     public static final float CLIMBER_FORWARD_LIMIT = 95;
     public static final float CLIMBER_REVERSE_LIMIT = 0;

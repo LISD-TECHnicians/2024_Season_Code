@@ -41,10 +41,10 @@ public class SwerveModule {
   public SwerveModule(int driveMotorID, int rotationMotorID, int rotationEncoderID, double angleOffset, 
       boolean driveMotorInvert, boolean rotationMotorInvert, boolean rotationEncoderInvert) {
     // Declare swerve module componenets
-    driveMotor = new TalonFX(driveMotorID, "rio");
+    driveMotor = new TalonFX(driveMotorID, "canivore");
     rotationMotor = new CANSparkMax(rotationMotorID, MotorType.kBrushless);
 
-    rotationEncoder = new CANcoder(rotationEncoderID, "rio");
+    rotationEncoder = new CANcoder(rotationEncoderID, "canivore");
 
     // Clear any left over settings from previous uses
     driveMotor.getConfigurator().apply(new TalonFXConfiguration());
@@ -52,7 +52,7 @@ public class SwerveModule {
 
     rotationEncoder.getConfigurator().apply(new CANcoderConfiguration());
 
-    rotationMotor.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+    rotationMotor.setSmartCurrentLimit(DriveConstants.ROTATION_CURRENT_LIMIT);
 
     driveMotor.setNeutralMode(NeutralModeValue.Brake);
     rotationMotor.setIdleMode(IdleMode.kBrake);
@@ -97,11 +97,11 @@ public class SwerveModule {
     swerveModuleState = SwerveModuleState.optimize(swerveModuleState, getSwerveState().angle);
 
     double driveSpeed = driveLimiter.calculate(swerveModuleState.speedMetersPerSecond);
-    driveSpeed = DriveConstants.NOMINAL_VOLTAGE * driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
+    driveSpeed = ControllerConstants.NOMINAL_VOLTAGE * driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
     driveSpeed = Math.abs(driveSpeed) > DriveConstants.DRIVE_VOLTAGE_DEADBAND ? driveSpeed : 0;
 
     double rotationSpeed = rotationPID.calculate(getRotationPosition(), swerveModuleState.angle.getRadians());
-    rotationSpeed = DriveConstants.NOMINAL_VOLTAGE * MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
+    rotationSpeed = ControllerConstants.NOMINAL_VOLTAGE * MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
         DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
     rotationSpeed = Math.abs(rotationSpeed) > DriveConstants.DRIVE_VOLTAGE_DEADBAND ? rotationSpeed : 0;
 

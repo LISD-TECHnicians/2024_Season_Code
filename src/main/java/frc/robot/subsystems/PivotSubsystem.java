@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.PivotConstants;
 
 import com.revrobotics.CANSparkMax;
@@ -25,8 +25,8 @@ public class PivotSubsystem extends SubsystemBase {
     pivotLeft.restoreFactoryDefaults();
     pivotRight.restoreFactoryDefaults();
 
-    pivotLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
-    pivotRight.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    pivotLeft.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
+    pivotRight.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
 
     pivotLeft.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);
     pivotRight.setSmartCurrentLimit(PivotConstants.PIVOT_CURRENT_LIMIT);

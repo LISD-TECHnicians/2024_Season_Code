@@ -88,7 +88,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private final SwerveDrivePoseEstimator swervePoseEstimator = new SwerveDrivePoseEstimator(swerve, Rotation2d.fromRadians(0.0), 
       swervePositions, initialPose);
 
-  private final Pigeon2 pigeon = new Pigeon2(DriveConstants.PIGEON_ID); // Declare IMU
+  private final Pigeon2 pigeon = new Pigeon2(DriveConstants.PIGEON_ID, "canivore"); // Declare IMU
 
   private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); 
   private final GenericEntry speedEntry = RobotContainer.robotStatus.add("Speed", 0).getEntry();

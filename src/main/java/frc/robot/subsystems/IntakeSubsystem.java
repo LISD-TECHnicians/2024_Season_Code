@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ControllerConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.IntakeConstants;
 
 import com.revrobotics.CANSparkMax;
@@ -15,9 +14,9 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     intake.restoreFactoryDefaults();
 
-    intake.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    intake.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
 
-    intake.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+    intake.setSmartCurrentLimit(IntakeConstants.INTAKE_CURRENT_LIMIT);
 
     intake.burnFlash();
   }

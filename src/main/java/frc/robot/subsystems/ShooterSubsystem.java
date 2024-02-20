@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.ControllerConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ShooterConstants;
 
 import com.revrobotics.CANSparkMax;
@@ -18,11 +17,11 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterLeft.restoreFactoryDefaults();
     shooterRight.restoreFactoryDefaults();
 
-    shooterLeft.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
-    shooterRight.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    shooterLeft.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
+    shooterRight.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
 
-    shooterLeft.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
-    shooterRight.setSmartCurrentLimit(ControllerConstants.DEFAULT_NEO_CURRENT_LIMIT);
+    shooterLeft.setSmartCurrentLimit(ShooterConstants.SHOOTER_CURRENT_LIMIT);
+    shooterRight.setSmartCurrentLimit(ShooterConstants.SHOOTER_CURRENT_LIMIT);
 
     shooterLeft.setIdleMode(IdleMode.kCoast);
     shooterRight.setIdleMode(IdleMode.kCoast);
