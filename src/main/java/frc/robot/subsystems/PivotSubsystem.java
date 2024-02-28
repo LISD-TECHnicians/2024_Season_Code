@@ -47,7 +47,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public void setPivotAngle(double angle) {
-    pivotLeft.set(MathUtil.clamp(pivotPID.calculate(getPivotAngle(), angle), -PivotConstants.PIVOT_MAX_OUTPUT, PivotConstants.PIVOT_MAX_OUTPUT));
+    pivotLeft.set(-MathUtil.clamp(pivotPID.calculate(getPivotAngle(), angle), -PivotConstants.PIVOT_MAX_OUTPUT, PivotConstants.PIVOT_MAX_OUTPUT));
   }
 
   public double getPivotRawAngle(){
@@ -55,7 +55,7 @@ public class PivotSubsystem extends SubsystemBase {
   }
 
   public double getPivotAngle() {
-    return pivotLeft.getEncoder().getPosition() * PivotConstants.PIVOT_GEAR_RATIO + PivotConstants.PIVOT_INITIAL_ANGLE; //  degrees
+    return -pivotLeft.getEncoder().getPosition() * PivotConstants.PIVOT_GEAR_RATIO * 360 + PivotConstants.PIVOT_INITIAL_ANGLE; //  degrees
   }
 
   public boolean getShooterReadiness(double angle) {

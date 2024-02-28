@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
 
 import java.util.function.BooleanSupplier;
@@ -18,16 +19,20 @@ public class SwerveCmd extends Command {
 
   private final BooleanSupplier robotOriented;
 
+  private final BooleanSupplier slowSpeed;
+
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); 
 
   public SwerveCmd(SwerveSubsystem swerveSubsystem, DoubleSupplier xController, DoubleSupplier yController, 
-      DoubleSupplier rotationController, BooleanSupplier robotOriented) {
+      DoubleSupplier rotationController, BooleanSupplier robotOriented, BooleanSupplier slowSpeed) {
     this.swerveSubsystem = swerveSubsystem;
     this.xController = xController;
     this.yController = yController;
     this.rotationController = rotationController;
 
     this.robotOriented = robotOriented;
+
+    this.slowSpeed = slowSpeed;
 
     addRequirements(swerveSubsystem);
   }
@@ -37,10 +42,10 @@ public class SwerveCmd extends Command {
 
   @Override
   public void execute() {
-    double xSpeed = xController.getAsDouble();
-    double ySpeed = yController.getAsDouble();
+    double xSpeed = slowSpeed.getAsBoolean() ? xController.getAsDouble() * DriveConstants.SLOW_SPEED_FACTOR : xController.getAsDouble();
+    double ySpeed = slowSpeed.getAsBoolean() ? yController.getAsDouble() * DriveConstants.SLOW_SPEED_FACTOR : yController.getAsDouble();
 
-    double rotationSpeed = rotationController.getAsDouble();
+    double rotationSpeed = slowSpeed.getAsBoolean() ? rotationController.getAsDouble() * DriveConstants.SLOW_SPEED_FACTOR : rotationController.getAsDouble();
 
     if (robotOriented.getAsBoolean()) {
       swerveSpeeds.vxMetersPerSecond = xSpeed;

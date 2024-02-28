@@ -15,7 +15,7 @@ public class VisionPoseUpdateCmd extends Command {
     this.swerveSubsystem = swerveSubsystem;
     this.limelightSubsystem = limelightSubsystem;
 
-    // addRequirements(limelightSubsystem);
+    addRequirements(limelightSubsystem);
   }
 
   @Override

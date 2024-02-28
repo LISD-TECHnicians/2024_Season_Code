@@ -1,22 +1,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-
 import frc.robot.Constants.ClimberConstants;
-
 import frc.robot.subsystems.ClimberSubsystem;
 
-import java.util.function.DoubleSupplier;
+import java.util.function.BooleanSupplier;
 
 public class ManualClimberCmd extends Command {
   private final ClimberSubsystem climberSubsystem;
 
-  private final DoubleSupplier speed;
+  private final BooleanSupplier up;
+  private final BooleanSupplier down;
 
-  public ManualClimberCmd(ClimberSubsystem climberSubsystem, DoubleSupplier speed) {
+  public ManualClimberCmd(ClimberSubsystem climberSubsystem, BooleanSupplier up, BooleanSupplier down) {
     this.climberSubsystem = climberSubsystem;
 
-    this.speed = speed;
+    this.up = up;
+    this.down = down;
 
     addRequirements(climberSubsystem);
   }
@@ -26,8 +26,15 @@ public class ManualClimberCmd extends Command {
 
   @Override
   public void execute() {
-    climberSubsystem.setClimberSpeed(speed.getAsDouble() >= 0 ? speed.getAsDouble() : speed.getAsDouble() * 
-        ClimberConstants.CLIMBER_DOWN_SPEED_FACTOR);
+    if (up.getAsBoolean()) {
+      climberSubsystem.setClimberSpeed(ClimberConstants.CLIMBER_DEFAULT_SPEED);
+    }
+    else if (down.getAsBoolean()) {
+      climberSubsystem.setClimberSpeed(-ClimberConstants.CLIMBER_DEFAULT_SPEED);
+    }
+    else {
+      climberSubsystem.setClimberSpeed(0);
+    }
   }
 
   @Override

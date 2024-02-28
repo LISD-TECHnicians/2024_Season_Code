@@ -10,10 +10,10 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 
 public final class Constants {
   public static class ControllerConstants {
-    public static final int CONTROLLER_1_PORT = 0;
-    public static final int CONTROLLER_2_PORT = 1;
+    public static final int CONTROLLER_1_PORT = 1;
+    public static final int CONTROLLER_2_PORT = 0;
 
-    public static final double DEADBAND = 0.1; 
+    public static final double DEADBAND = 0.15; 
     public static final double DEBOUNCE_TIME = 0.2;
 
     public static final double NOMINAL_VOLTAGE = 11.0;
@@ -97,19 +97,19 @@ public final class Constants {
     public static final double MOTOR_ROTATION_I = 0.3; 
     public static final double MOTOR_ROTATION_D = 0.0;
 
-    public static final double CHASSIS_ROTATION_P = 5.0;
+    public static final double CHASSIS_ROTATION_P = 0.2;
     public static final double CHASSIS_ROTATION_I = 0.0;
     public static final double CHASSIS_ROTATION_D = 0.0;
 
-    public static final double PATH_TRANSLATION_P = 5.0;
+    public static final double PATH_TRANSLATION_P = 2.5;
     public static final double PATH_TRANSLATION_I = 0.0; 
     public static final double PATH_TRANSLATION_D = 0.0;
 
-    public static final double PATH_ROTATION_P = 5.0;
+    public static final double PATH_ROTATION_P = 2.5;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
-    public static final double DRIVE_VOLTAGE_DEADBAND = 3.0;
+    public static final double DRIVE_VOLTAGE_DEADBAND = 1.5;
 
     public static final Pose2d ZERO_POSE = new Pose2d();
 
@@ -119,14 +119,16 @@ public final class Constants {
     public static final double SWERVE_SHOOTER_OFFSET = 2.0;
 
     public static final double SWERVE_ROTATION_VARIABILITY = 2.0;
+
+    public static final double SLOW_SPEED_FACTOR = 0.45;
   }
 
   public static class IntakeConstants {
     public static final int INTAKE_ID = 15;
 
-    public static final int INTAKE_CURRENT_LIMIT = 25;
+    public static final int INTAKE_CURRENT_LIMIT = 70;
 
-    public static final double INTAKE_SPEED_FACTOR = 0.80;
+    public static final double INTAKE_SPEED_FACTOR = 0.65;
     public static final double INTAKE_DEFAULT_SPEED = 1.0;
   }
 
@@ -134,11 +136,11 @@ public final class Constants {
     public static final int INDEXER_LEFT_ID = 16;
     public static final int INDEXER_RIGHT_ID = 17;
 
-    public static final int INDEXER_CURRENT_LIMIT = 10;
+    public static final int INDEXER_CURRENT_LIMIT = 35;
 
-    public static final int NOTE_PRESENT_PORT = 1;
+    public static final int NOTE_PRESENT_PORT = 0;
 
-    public static final double INDEXER_SPEED_FACTOR = 0.3;
+    public static final double INDEXER_SPEED_FACTOR = 0.2;
     public static final double INDEXER_DEFAULT_SPEED = 1.0;
   }
 
@@ -146,53 +148,56 @@ public final class Constants {
     public static final int PIVOT_LEFT_ID = 18;
     public static final int PIVOT_RIGHT_ID = 19;
 
-    public static final double PIVOT_P = 1.0;
-    public static final double PIVOT_I = 1.0;
-    public static final double PIVOT_D = 1.0;
+    public static final double PIVOT_P = 0.04;
+    public static final double PIVOT_I = 0.0;
+    public static final double PIVOT_D = 0.0;
 
-    public static final float PIVOT_FORWARD_LIMIT = 0;
-    public static final float PIVOT_REVERSE_LIMIT = 0;
+    public static final float PIVOT_REVERSE_LIMIT = 0f; // Intake Position
+    public static final float PIVOT_FORWARD_LIMIT = 9.31f;
 
-    public static final int PIVOT_CURRENT_LIMIT = 20;
+    public static final int PIVOT_CURRENT_LIMIT = 25;
 
-    public static final double PIVOT_MAX_OUTPUT = 0.5;
+    public static final double PIVOT_MAX_OUTPUT = 0.2;
 
-    public static final double PIVOT_GEAR_RATIO = 1/75;
+    public static final double PIVOT_GEAR_RATIO = 0.015238;
 
-    public static final double PIVOT_INITIAL_ANGLE = 35;
+    public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 0.0;
+    public static final double PIVOT_SHOOTER_OFFSET = 37.0;
 
-    public static final double INTAKE_ANGLE = 46;
-    public static final double TRAVEL_ANGLE = 34;
+    public static final double INTAKE_ANGLE = 53.290;
+    public static final double TRAVEL_ANGLE = 31.478;
     public static final double CLIMBER_ANGLE = 56;
+    public static final double SHOOT_ANGLE = 40;
 
-    public static final double PIVOT_VARIABILITY = 1.0;
+    public static final double PIVOT_VARIABILITY = 2.5;
   }
 
   public static class ShooterConstants {
     public static final int SHOOTER_LEFT_ID = 20;
     public static final int SHOOTER_RIGHT_ID = 21;
 
-    public static final int SHOOTER_CURRENT_LIMIT = 20;
+    public static final int SHOOTER_CURRENT_LIMIT = 25;
 
-    public static final double SHOOTER_SPEED_FACTOR = 0.8;
+    public static final double SHOOTER_SPEED_FACTOR = 1.0;
     public static final double SHOOTER_DEFAULT_SPEED = 1.0;
 
-    public static final double SHOOTER_TIME_DELAY = 3.0;
+    public static final double SHOOTER_SPIN_FACTOR = 0.85;
+
+    public static final double SHOOTER_TIME_DELAY = 1.75;
   }
 
   public static class ClimberConstants {
     public static final int CLIMBER_LEFT_ID = 22;
     public static final int CLIMBER_RIGHT_ID = 23;
 
-    public static final int CLIMBER_CURRENT_LIMIT = 20;
+    public static final int CLIMBER_CURRENT_LIMIT = 80;
 
     public static final float CLIMBER_FORWARD_LIMIT = 95;
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
-    public static final double CLIMBER_SPEED_FACTOR = 0.75;
-    public static final double CLIMBER_DOWN_SPEED_FACTOR = 0.60;
+    public static final double CLIMBER_SPEED_FACTOR = 0.8;
+    public static final double CLIMBER_DEFAULT_SPEED = 1.0;
 
     public static final double CLIMBER_VARIABILITY = 0.2;
   }
@@ -206,5 +211,8 @@ public final class Constants {
     public static final int NOTE_DETECTION_PIPELINE = 2;
 
     public static final double LL_OVERRIDE_DEBOUNCE = 3;
+
+    public static final double MIN_TA = 0.20;
+    public static final double MAX_TX = 25;
   }
 }

@@ -8,6 +8,7 @@ import frc.robot.Constants.LimelightConstants;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.geometry.Pose2d;
 
 public class LimelightSubsystem extends SubsystemBase {
@@ -16,7 +17,7 @@ public class LimelightSubsystem extends SubsystemBase {
   public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance().get();
 
-    setPipeline(LimelightConstants.LL_ONE, LimelightConstants.NOTE_DETECTION_PIPELINE);
+    // setPipeline(LimelightConstants.LL_ONE, LimelightConstants.NOTE_DETECTION_PIPELINE);
     setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
 
@@ -69,7 +70,10 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    SmartDashboard.putBoolean("Ready Aim", getValidTag(LimelightConstants.LL_TWO) && 
+        (getFiducialID(LimelightConstants.LL_TWO) == 7 || getFiducialID(LimelightConstants.LL_TWO) == 4));
+  }
 
   @Override
   public void simulationPeriodic() {}

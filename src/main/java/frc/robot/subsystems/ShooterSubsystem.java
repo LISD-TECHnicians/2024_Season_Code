@@ -26,18 +26,13 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterLeft.setIdleMode(IdleMode.kCoast);
     shooterRight.setIdleMode(IdleMode.kCoast);
 
-    shooterRight.follow(shooterLeft, true);
-
     shooterLeft.burnFlash();
     shooterRight.burnFlash();
   }
 
   public void setShooterSpeed(double speed) {
     shooterLeft.set(speed * ShooterConstants.SHOOTER_SPEED_FACTOR);
-  }
-
-  public double getShooterSpeed() {
-    return shooterLeft.get();
+    shooterRight.set(-speed * ShooterConstants.SHOOTER_SPEED_FACTOR * ShooterConstants.SHOOTER_SPIN_FACTOR);
   }
 
   @Override

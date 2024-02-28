@@ -218,10 +218,15 @@ public class SwerveSubsystem extends SubsystemBase {
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);
 
+    SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
+
     // System.out.println("Cancoder FL; " + frontLeftSwerve.getRotationPosition());
     // System.out.println("Cancoder FR; " + frontRightSwerve.getRotationPosition());
     // System.out.println("Cancoder RR; " + rearRightSwerve.getRotationPosition());
     // System.out.println("Cancoder RL; " + rearLeftSwerve.getRotationPosition());
+
+    // setSwerveRotation(Math.toDegrees(getYaw()), 180);
+    // System.out.println(Math.toDegrees(getYaw()));
   }
 
   @Override

@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import java.util.function.BooleanSupplier;
+import edu.wpi.first.wpilibj.Timer;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -17,37 +17,41 @@ public class ManualIntakeCmd extends Command {
   private final PivotSubsystem pivotSubsystem;
   private final IndexerSubsystem indexerSubsystem;
 
-  private final BooleanSupplier speed;
+  private final Timer intakeTimeOut = new Timer();
 
-  public ManualIntakeCmd(IntakeSubsystem intakeSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem,
-      BooleanSupplier speed) {
+  public ManualIntakeCmd(IntakeSubsystem intakeSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem) {
     this.intakeSubsystem = intakeSubsystem;
     this.pivotSubsystem = pivotSubsystem;
     this.indexerSubsystem = indexerSubsystem;
-
-    this.speed = speed;
 
     addRequirements(intakeSubsystem, pivotSubsystem, indexerSubsystem);
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    intakeTimeOut.restart();
+  }
 
   @Override
   public void execute() {
     pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
 
     if (pivotSubsystem.getIntakeReadiness()) {
-      intakeSubsystem.setIntakeSpeed(speed.getAsBoolean() ? IntakeConstants.INTAKE_DEFAULT_SPEED : 0.0);
+      intakeSubsystem.setIntakeSpeed(IntakeConstants.INTAKE_DEFAULT_SPEED);
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
     }
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intakeSubsystem.setIntakeSpeed(0);
+    indexerSubsystem.setIndexerSpeed(0);
+    
+    intakeTimeOut.stop();
+  }
 
   @Override
   public boolean isFinished() {
-    return indexerSubsystem.getNotePresent();
+    return !indexerSubsystem.getNotePresent() || intakeTimeOut.get() > 5;
   }
 }
