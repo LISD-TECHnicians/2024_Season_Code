@@ -74,6 +74,10 @@ public class PivotSubsystem extends SubsystemBase {
     return Math.abs(getPivotAngle() - PivotConstants.CLIMBER_ANGLE) < PivotConstants.PIVOT_VARIABILITY;
   }
 
+  public boolean getAmpReadiness() {
+    return Math.abs(getPivotAngle() - PivotConstants.AMP_ANGLE) < PivotConstants.PIVOT_VARIABILITY;
+  }
+
   @Override
   public void periodic() {}
 

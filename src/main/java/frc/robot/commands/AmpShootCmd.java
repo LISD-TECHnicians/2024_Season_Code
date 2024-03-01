@@ -1,43 +1,40 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.Constants.IndexerConstants;
-import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.PivotConstants;
-
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class ManualIntakeCmd extends Command {
+public class AmpShootCmd extends Command {
   private final IntakeSubsystem intakeSubsystem;
   private final PivotSubsystem pivotSubsystem;
   private final IndexerSubsystem indexerSubsystem;
+  private final ShooterSubsystem shooterSubsystem;
 
-  private final Timer intakeTimeOut = new Timer();
-
-  public ManualIntakeCmd(IntakeSubsystem intakeSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem) {
+  public AmpShootCmd(IntakeSubsystem intakeSubsystem, PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
+      ShooterSubsystem shooterSubsystem) {
     this.intakeSubsystem = intakeSubsystem;
     this.pivotSubsystem = pivotSubsystem;
     this.indexerSubsystem = indexerSubsystem;
+    this.shooterSubsystem = shooterSubsystem;
 
-    addRequirements(intakeSubsystem, pivotSubsystem, indexerSubsystem);
+    addRequirements(intakeSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem);
   }
 
   @Override
-  public void initialize() {
-    intakeTimeOut.restart();
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
-    pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
+    pivotSubsystem.setPivotAngle(PivotConstants.AMP_ANGLE);
+    shooterSubsystem.setShooterSpeed(ShooterConstants.SHOOTER_AMP_SPEED);
 
-    if (pivotSubsystem.getIntakeReadiness()) {
-      intakeSubsystem.setIntakeSpeed(IntakeConstants.INTAKE_DEFAULT_SPEED);
+    if (pivotSubsystem.getAmpReadiness()) {
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
     }
   }
@@ -46,10 +43,11 @@ public class ManualIntakeCmd extends Command {
   public void end(boolean interrupted) {
     intakeSubsystem.setIntakeSpeed(0);
     indexerSubsystem.setIndexerSpeed(0);
+    shooterSubsystem.setShooterSpeed(0);
   }
 
   @Override
   public boolean isFinished() {
-    return !indexerSubsystem.getNotePresent() || intakeTimeOut.get() > 5;
+    return false;
   }
 }

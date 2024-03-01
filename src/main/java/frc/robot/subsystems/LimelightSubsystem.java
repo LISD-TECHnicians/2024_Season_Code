@@ -72,7 +72,8 @@ public class LimelightSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putBoolean("Ready Aim", getValidTag(LimelightConstants.LL_TWO) && 
-        (getFiducialID(LimelightConstants.LL_TWO) == 7 || getFiducialID(LimelightConstants.LL_TWO) == 4));
+        (getFiducialID(LimelightConstants.LL_TWO) == 7 || getFiducialID(LimelightConstants.LL_TWO) == 4  || 
+        getFiducialID(LimelightConstants.LL_TWO) == 8 || getFiducialID(LimelightConstants.LL_TWO) == 3));
   }
 
   @Override

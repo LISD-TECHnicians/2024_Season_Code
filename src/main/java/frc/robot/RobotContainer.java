@@ -22,7 +22,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
-
+import frc.robot.commands.AmpShootCmd;
 import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
 import frc.robot.commands.ManualClimberCmd;
@@ -64,6 +64,7 @@ public class RobotContainer {
   private final SetPivotAngleCmd setPivotAngleCmd = new SetPivotAngleCmd(pivotSubsystem, PivotConstants.TRAVEL_ANGLE);
   private final ManualIndexerCmd runIndexerCmd = new ManualIndexerCmd(indexerSubsystem, controller2.button(4), controller2.button(2));
   private final ManualReverseIntakeCmd reverseIntakeCmd = new ManualReverseIntakeCmd(intakeSubsystem);
+  private final AmpShootCmd ampShootCmd = new AmpShootCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem);
 
   private final VisionPoseUpdateCmd visionPoseUpdateCmd = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
 
@@ -81,8 +82,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
-        limelightSubsystem));
-    NamedCommands.registerCommand("Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem));
+        limelightSubsystem).asProxy());
+    NamedCommands.registerCommand("Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem).asProxy());
     /* NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
         indexerSubsystem, limelightSubsystem, true));
     NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
@@ -111,6 +112,8 @@ public class RobotContainer {
 
     controller2.povUp().or(controller2.povDown()).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
     // limelightOverride.debounce(LimelightConstants.LL_OVERRIDE_DEBOUNCE).whileTrue(runShooterCmd);
+
+    // controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(ampShootCmd);
 
     poseUpdate.whileTrue(visionPoseUpdateCmd);
   }

@@ -23,7 +23,7 @@ public class AutoShootCmd extends Command {
   private final Timer shooterUpTimer = new Timer();
   private final Timer shooterDownTimer = new Timer();
 
-  private double angle = PivotConstants.TRAVEL_ANGLE;
+  private double angle = PivotConstants.INTAKE_ANGLE;
 
   public AutoShootCmd(PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
       ShooterSubsystem shooterSubsystem, LimelightSubsystem limelightSubsystem) {
@@ -48,7 +48,8 @@ public class AutoShootCmd extends Command {
   @Override
   public void execute() {
     if (limelightSubsystem.getValidTag(LimelightConstants.LL_TWO) && (limelightSubsystem.getFiducialID(LimelightConstants.LL_TWO) == 7 
-        || limelightSubsystem.getFiducialID(LimelightConstants.LL_TWO) == 4)) {
+        || limelightSubsystem.getFiducialID(LimelightConstants.LL_TWO) == 4 || limelightSubsystem.getFiducialID(LimelightConstants.LL_TWO) == 8) 
+        || limelightSubsystem.getFiducialID(LimelightConstants.LL_TWO) == 3) {
       angle = limelightSubsystem.getTY(LimelightConstants.LL_TWO) + PivotConstants.PIVOT_SHOOTER_OFFSET;
     }
 
@@ -69,12 +70,10 @@ public class AutoShootCmd extends Command {
     shooterSubsystem.setShooterSpeed(0.0);
 
     limelightSubsystem.setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
-
-    shooterDownTimer.stop();
   }
 
   @Override
   public boolean isFinished() {
-    return true;
+    return shooterDownTimer.hasElapsed(1.50);
   }
 }

@@ -101,11 +101,11 @@ public final class Constants {
     public static final double CHASSIS_ROTATION_I = 0.0;
     public static final double CHASSIS_ROTATION_D = 0.0;
 
-    public static final double PATH_TRANSLATION_P = 2.5;
+    public static final double PATH_TRANSLATION_P = 5.0;
     public static final double PATH_TRANSLATION_I = 0.0; 
     public static final double PATH_TRANSLATION_D = 0.0;
 
-    public static final double PATH_ROTATION_P = 2.5;
+    public static final double PATH_ROTATION_P = 3.5;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
@@ -163,12 +163,13 @@ public final class Constants {
 
     public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 37.0;
+    public static final double PIVOT_SHOOTER_OFFSET = 39.5;
 
-    public static final double INTAKE_ANGLE = 53.290;
+    public static final double INTAKE_ANGLE = 54.290;
     public static final double TRAVEL_ANGLE = 31.478;
     public static final double CLIMBER_ANGLE = 56;
     public static final double SHOOT_ANGLE = 40;
+    public static final double AMP_ANGLE = 60;
 
     public static final double PIVOT_VARIABILITY = 2.5;
   }
@@ -182,9 +183,11 @@ public final class Constants {
     public static final double SHOOTER_SPEED_FACTOR = 1.0;
     public static final double SHOOTER_DEFAULT_SPEED = 1.0;
 
+    public static final double SHOOTER_AMP_SPEED = 0.15;
+
     public static final double SHOOTER_SPIN_FACTOR = 0.85;
 
-    public static final double SHOOTER_TIME_DELAY = 1.75;
+    public static final double SHOOTER_TIME_DELAY = 1.0;
   }
 
   public static class ClimberConstants {
@@ -193,10 +196,10 @@ public final class Constants {
 
     public static final int CLIMBER_CURRENT_LIMIT = 80;
 
-    public static final float CLIMBER_FORWARD_LIMIT = 95;
+    public static final float CLIMBER_FORWARD_LIMIT = 285;
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
-    public static final double CLIMBER_SPEED_FACTOR = 0.8;
+    public static final double CLIMBER_SPEED_FACTOR = 1.0;
     public static final double CLIMBER_DEFAULT_SPEED = 1.0;
 
     public static final double CLIMBER_VARIABILITY = 0.2;
@@ -212,7 +215,7 @@ public final class Constants {
 
     public static final double LL_OVERRIDE_DEBOUNCE = 3;
 
-    public static final double MIN_TA = 0.20;
-    public static final double MAX_TX = 25;
+    public static final double MIN_TA = 0.40;
+    public static final double MAX_TX = 20;
   }
 }

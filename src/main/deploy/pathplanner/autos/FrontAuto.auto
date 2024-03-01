@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.8494139845422553,
-      "y": 4.383177909212962
+      "x": 1.4576806931433388,
+      "y": 6.413512827029485
     },
-    "rotation": 149.83280437736408
+    "rotation": -137.2906100426404
   },
   "command": {
     "type": "sequential",
@@ -20,19 +20,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "InitialtoStage"
+            "pathName": "ToFront1"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BackfromStage"
           }
         },
         {
