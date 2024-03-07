@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4576806931433388,
-        "y": 6.413512827029485
+        "x": 1.4006716902322698,
+        "y": 5.444359777608444
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.170293229475348,
-        "y": 6.798323596647194
+        "x": 2.0709649197109865,
+        "y": 6.0870798408269255
       },
       "isLocked": false,
-      "linkedName": "Initial3"
+      "linkedName": "IntialPoseFront"
     },
     {
       "anchor": {
-        "x": 2.7261310078175716,
-        "y": 7.339909124262693
+        "x": 2.8116445121779137,
+        "y": 6.912341602460982
       },
       "prevControl": {
-        "x": 1.7569779584003613,
-        "y": 7.012107357548048
+        "x": 2.270058984562414,
+        "y": 6.099963311037732
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,8 +30,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.0,
-      "rotationDegrees": -153.43494882268837,
+      "waypointRelativePos": 0.1,
+      "rotationDegrees": -132.06822408251423,
       "rotateFast": true
     }
   ],
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "Intake"
+                "name": "Manual Intake"
               }
             }
           ]
@@ -56,14 +56,14 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 3.0,
-    "maxAngularVelocity": 500.0,
-    "maxAngularAcceleration": 2000.0
+    "maxVelocity": 3.0,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 50.0,
+    "maxAngularAcceleration": 500.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -139.18491612511843,
+    "rotation": -137.86240522611186,
     "rotateFast": false
   },
   "reversed": false,

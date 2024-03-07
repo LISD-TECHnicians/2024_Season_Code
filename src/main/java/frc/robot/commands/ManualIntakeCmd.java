@@ -50,6 +50,6 @@ public class ManualIntakeCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return !indexerSubsystem.getNotePresent() || intakeTimeOut.get() > 5;
+    return !indexerSubsystem.getNotePresent() || intakeTimeOut.hasElapsed(5);
   }
 }

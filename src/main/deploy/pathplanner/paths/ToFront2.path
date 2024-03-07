@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.7261310078175716,
-        "y": 7.339909124262693
+        "x": 2.8116445121779137,
+        "y": 6.912341602460982
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.0586176727909014,
-        "y": 7.240143369175628
+        "x": 1.4434284424090704,
+        "y": 6.898089351733681
       },
       "isLocked": false,
       "linkedName": "Front1"
@@ -17,29 +17,29 @@
     {
       "anchor": {
         "x": 2.8116445121779137,
-        "y": 5.54412553269551
+        "y": 5.529873281968787
       },
       "prevControl": {
-        "x": 1.3721671887788238,
-        "y": 5.130810261620524
+        "x": 1.6999689554900967,
+        "y": 5.4586120283351685
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Front2"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 177.6745455792247,
-      "rotateFast": true
+      "waypointRelativePos": 0.35,
+      "rotationDegrees": 180.0,
+      "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.4,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "Intake"
+                "name": "Manual Intake"
               }
             }
           ]
@@ -56,14 +56,14 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.75,
-    "maxAcceleration": 7.0,
-    "maxAngularVelocity": 500.0,
-    "maxAngularAcceleration": 2000.0
+    "maxVelocity": 3.0,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 50.0,
+    "maxAngularAcceleration": 500.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -177.9545915111129,
+    "rotation": -178.09084756701853,
     "rotateFast": false
   },
   "reversed": false,

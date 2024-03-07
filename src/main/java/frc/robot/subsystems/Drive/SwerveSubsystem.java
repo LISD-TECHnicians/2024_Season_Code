@@ -212,13 +212,13 @@ public class SwerveSubsystem extends SubsystemBase {
     swervePoseEstimator.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
     yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
-    speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
-        Math.pow(getChassisSpeeds().vyMetersPerSecond, 2)));
+    speedEntry.setDouble((Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
+        Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))) / 1.00);
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);
 
-    SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
+    SmartDashboard.putNumber("Match Time", (int)DriverStation.getMatchTime());
 
     // System.out.println("Cancoder FL; " + frontLeftSwerve.getRotationPosition());
     // System.out.println("Cancoder FR; " + frontRightSwerve.getRotationPosition());

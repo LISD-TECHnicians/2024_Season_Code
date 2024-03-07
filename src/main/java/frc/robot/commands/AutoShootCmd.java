@@ -23,7 +23,7 @@ public class AutoShootCmd extends Command {
   private final Timer shooterUpTimer = new Timer();
   private final Timer shooterDownTimer = new Timer();
 
-  private double angle = PivotConstants.INTAKE_ANGLE;
+  private double angle = PivotConstants.SHOOT_ANGLE;
 
   public AutoShootCmd(PivotSubsystem pivotSubsystem, IndexerSubsystem indexerSubsystem, 
       ShooterSubsystem shooterSubsystem, LimelightSubsystem limelightSubsystem) {

@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.Command;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
@@ -7,14 +9,15 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.LimelightConstants;
 import frc.robot.Constants.PivotConstants;
+
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -22,6 +25,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
+
 import frc.robot.commands.AmpShootCmd;
 import frc.robot.commands.AutoIntakeCmd;
 import frc.robot.commands.AutoShootCmd;
@@ -31,6 +35,7 @@ import frc.robot.commands.ManualIntakeCmd;
 import frc.robot.commands.ManualReverseIntakeCmd;
 import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.SetPivotAngleCmd;
+import frc.robot.commands.SpinUpCmd;
 import frc.robot.commands.SwerveCmd;
 import frc.robot.commands.VisionPoseUpdateCmd;
 
@@ -65,6 +70,7 @@ public class RobotContainer {
   private final ManualIndexerCmd runIndexerCmd = new ManualIndexerCmd(indexerSubsystem, controller2.button(4), controller2.button(2));
   private final ManualReverseIntakeCmd reverseIntakeCmd = new ManualReverseIntakeCmd(intakeSubsystem);
   private final AmpShootCmd ampShootCmd = new AmpShootCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem);
+  private final SpinUpCmd spinUpCmd = new SpinUpCmd(shooterSubsystem, controller2.button(3));
 
   private final VisionPoseUpdateCmd visionPoseUpdateCmd = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
 
@@ -74,27 +80,29 @@ public class RobotContainer {
       (Math.abs(limelightSubsystem.getTX(LimelightConstants.LL_TWO)) < LimelightConstants.MAX_TX) && 
       limelightSubsystem.getPipeline(LimelightConstants.LL_TWO) == LimelightConstants.POSE_ESTIMATOR_PIPELINE)
   );
-  // private final Trigger limelightOverride = new Trigger(controller2.button(3));*/
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
 
   private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
-    NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
+    /*NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
         limelightSubsystem).asProxy());
     NamedCommands.registerCommand("Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem).asProxy());
-    /* NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
+    NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
         indexerSubsystem, limelightSubsystem, true));
     NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
         indexerSubsystem, limelightSubsystem, false)); */
+    NamedCommands.registerCommand("Manual Shoot", new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem));
+    NamedCommands.registerCommand("Manual Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem));
 
     configureBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
     climberSubsystem.setDefaultCommand(runClimberCmd);
     pivotSubsystem.setDefaultCommand(setPivotAngleCmd);
-    indexerSubsystem.setDefaultCommand(runIndexerCmd);    
+    indexerSubsystem.setDefaultCommand(runIndexerCmd);  
+    shooterSubsystem.setDefaultCommand(spinUpCmd);  
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -111,7 +119,6 @@ public class RobotContainer {
     controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoRunShooterCmd);
 
     controller2.povUp().or(controller2.povDown()).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
-    // limelightOverride.debounce(LimelightConstants.LL_OVERRIDE_DEBOUNCE).whileTrue(runShooterCmd);
 
     // controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(ampShootCmd);
 

@@ -76,7 +76,7 @@ public final class Constants {
 
     public static final double SWERVE_RADIUS = 0.431; // m
 
-    public static final double WHEEL_DIAMETER = 0.102;
+    public static final double WHEEL_DIAMETER = 0.10070;
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 
     public static final double DRIVE_GEAR_RATIO = 1/6.75;
@@ -101,11 +101,11 @@ public final class Constants {
     public static final double CHASSIS_ROTATION_I = 0.0;
     public static final double CHASSIS_ROTATION_D = 0.0;
 
-    public static final double PATH_TRANSLATION_P = 5.0;
+    public static final double PATH_TRANSLATION_P = 4.5;
     public static final double PATH_TRANSLATION_I = 0.0; 
     public static final double PATH_TRANSLATION_D = 0.0;
 
-    public static final double PATH_ROTATION_P = 3.5;
+    public static final double PATH_ROTATION_P = 2.05;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
@@ -163,12 +163,12 @@ public final class Constants {
 
     public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 39.5;
+    public static final double PIVOT_SHOOTER_OFFSET = 39;
 
     public static final double INTAKE_ANGLE = 54.290;
     public static final double TRAVEL_ANGLE = 31.478;
     public static final double CLIMBER_ANGLE = 56;
-    public static final double SHOOT_ANGLE = 40;
+    public static final double SHOOT_ANGLE = 58;
     public static final double AMP_ANGLE = 60;
 
     public static final double PIVOT_VARIABILITY = 2.5;
@@ -196,7 +196,7 @@ public final class Constants {
 
     public static final int CLIMBER_CURRENT_LIMIT = 80;
 
-    public static final float CLIMBER_FORWARD_LIMIT = 285;
+    public static final float CLIMBER_FORWARD_LIMIT = 335;
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
     public static final double CLIMBER_SPEED_FACTOR = 1.0;
@@ -211,11 +211,13 @@ public final class Constants {
     
     public static final int POSE_ESTIMATOR_PIPELINE = 0;
     public static final int AIM_PIPELINE = 1;
+
     public static final int NOTE_DETECTION_PIPELINE = 2;
+    public static final int INTAKE_CAMERA = 3;
 
     public static final double LL_OVERRIDE_DEBOUNCE = 3;
 
-    public static final double MIN_TA = 0.40;
-    public static final double MAX_TX = 20;
+    public static final double MIN_TA = 0.2;
+    public static final double MAX_TX = 25;
   }
 }

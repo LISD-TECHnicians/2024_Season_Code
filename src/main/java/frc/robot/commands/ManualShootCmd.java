@@ -34,12 +34,12 @@ public class ManualShootCmd extends Command {
 
   @Override
   public void execute() {
-    pivotSubsystem.setPivotAngle(PivotConstants.INTAKE_ANGLE);
+    pivotSubsystem.setPivotAngle(PivotConstants.SHOOT_ANGLE);
 
     shooterSubsystem.setShooterSpeed(ShooterConstants.SHOOTER_DEFAULT_SPEED);
 
-    if (pivotSubsystem.getIntakeReadiness() && shooterTimer.get() > ShooterConstants.SHOOTER_TIME_DELAY) {
-      indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED / 3);
+    if (pivotSubsystem.getIntakeReadiness()) {
+      indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
     }
   }
 
@@ -51,6 +51,6 @@ public class ManualShootCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return shooterTimer.hasElapsed(5);
   }
 }
