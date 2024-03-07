@@ -167,8 +167,8 @@ public final class Constants {
 
     public static final double INTAKE_ANGLE = 54.290;
     public static final double TRAVEL_ANGLE = 31.478;
-    public static final double CLIMBER_ANGLE = 56;
-    public static final double SHOOT_ANGLE = 58;
+    public static final double CLIMBER_ANGLE = TRAVEL_ANGLE;
+    public static final double SHOOT_ANGLE = 56.5;
     public static final double AMP_ANGLE = 60;
 
     public static final double PIVOT_VARIABILITY = 2.5;
