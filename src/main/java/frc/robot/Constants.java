@@ -17,6 +17,8 @@ public final class Constants {
     public static final double DEBOUNCE_TIME = 0.2;
 
     public static final double NOMINAL_VOLTAGE = 11.0;
+
+    public static final double CMD_TIME_OUT = 5.00;
   }
 
   public static class DriveConstants {
@@ -187,7 +189,8 @@ public final class Constants {
 
     public static final double SHOOTER_SPIN_FACTOR = 0.85;
 
-    public static final double SHOOTER_TIME_DELAY = 1.0;
+    public static final double SHOOTER_TIME_UP_DELAY = 1.0;
+    public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
   }
 
   public static class ClimberConstants {

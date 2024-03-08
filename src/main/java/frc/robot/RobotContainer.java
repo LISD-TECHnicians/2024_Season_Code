@@ -96,7 +96,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("Manual Shoot", new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem));
     NamedCommands.registerCommand("Manual Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem));
 
-    configureBindings();
+    configureDriverBindings();
+    configureOperatorBindings();
+    configureOtherBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
     climberSubsystem.setDefaultCommand(runClimberCmd);
@@ -108,12 +110,14 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
-  private void configureBindings() {
+  private void configureDriverBindings() {
     // Driver Controls
     controller1.R1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runIntakeCmd);
     controller1.button(3).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(reverseIntakeCmd);
     // controller1.button(1).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoIntakeAlignCmd);
+  }
 
+  private void configureOperatorBindings() {
     // Operator Controls
     controller2.R2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runShooterCmd);
     controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoRunShooterCmd);
@@ -121,7 +125,9 @@ public class RobotContainer {
     controller2.povUp().or(controller2.povDown()).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
 
     // controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(ampShootCmd);
+  }
 
+  private void configureOtherBindings() {
     poseUpdate.whileTrue(visionPoseUpdateCmd);
   }
 

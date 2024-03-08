@@ -57,7 +57,7 @@ public class AutoShootCmd extends Command {
 
     shooterSubsystem.setShooterSpeed(ShooterConstants.SHOOTER_DEFAULT_SPEED);
 
-    if (pivotSubsystem.getShooterReadiness(angle) && shooterUpTimer.get() > ShooterConstants.SHOOTER_TIME_DELAY) {
+    if (pivotSubsystem.getShooterReadiness(angle) && shooterUpTimer.get() > ShooterConstants.SHOOTER_TIME_UP_DELAY) {
       indexerSubsystem.setIndexerSpeed(IndexerConstants.INDEXER_DEFAULT_SPEED);
 
       shooterDownTimer.start();
@@ -74,6 +74,6 @@ public class AutoShootCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return shooterDownTimer.hasElapsed(1.50);
+    return shooterDownTimer.hasElapsed(ShooterConstants.SHOOTER_TIME_DOWN_DELAY);
   }
 }

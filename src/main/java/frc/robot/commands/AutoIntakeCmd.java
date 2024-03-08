@@ -69,6 +69,6 @@ public class AutoIntakeCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return indexerSubsystem.getNotePresent();
+    return !indexerSubsystem.getNotePresent();
   }
 }
