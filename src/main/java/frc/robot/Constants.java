@@ -165,7 +165,7 @@ public final class Constants {
 
     public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 39;
+    public static final double PIVOT_SHOOTER_OFFSET = 43.5;
 
     public static final double INTAKE_ANGLE = 54.290;
     public static final double TRAVEL_ANGLE = 31.478;
@@ -187,7 +187,7 @@ public final class Constants {
 
     public static final double SHOOTER_AMP_SPEED = 0.15;
 
-    public static final double SHOOTER_SPIN_FACTOR = 0.85;
+    public static final double SHOOTER_SPIN_FACTOR = 0.9;
 
     public static final double SHOOTER_TIME_UP_DELAY = 1.0;
     public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
@@ -220,7 +220,7 @@ public final class Constants {
 
     public static final double LL_OVERRIDE_DEBOUNCE = 3;
 
-    public static final double MIN_TA = 0.2;
-    public static final double MAX_TX = 25;
+    public static final double MIN_TA = 0.1;
+    public static final double MAX_TX = 30;
   }
 }
