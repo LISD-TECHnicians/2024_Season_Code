@@ -3,7 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.ControllerConstants;
+
 import frc.robot.Constants.IndexerConstants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.PivotConstants;
@@ -50,6 +50,6 @@ public class ManualIntakeCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return !indexerSubsystem.getNotePresent() || intakeTimeOut.hasElapsed(ControllerConstants.CMD_TIME_OUT);
+    return !indexerSubsystem.getNotePresent() || intakeTimeOut.hasElapsed(IntakeConstants.INTAKE_TIME_OUT);
   }
 }

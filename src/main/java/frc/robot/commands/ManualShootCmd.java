@@ -2,7 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.ControllerConstants;
+
 import frc.robot.Constants.IndexerConstants;
 import frc.robot.Constants.PivotConstants;
 import frc.robot.Constants.ShooterConstants;
@@ -51,6 +51,6 @@ public class ManualShootCmd extends Command {
 
   @Override
   public boolean isFinished() {
-    return shooterTimer.hasElapsed(ControllerConstants.CMD_TIME_OUT);
+    return shooterTimer.hasElapsed(ShooterConstants.SHOOTER_TIME_OUT);
   }
 }
