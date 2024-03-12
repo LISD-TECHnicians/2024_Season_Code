@@ -56,7 +56,8 @@ public class RobotContainer {
       swerveSubsystem, 
       () -> Math.abs(controller1.getLeftY()) >= ControllerConstants.DEADBAND ? controller1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED : 0.0, 
       () -> Math.abs(controller1.getLeftX()) >= ControllerConstants.DEADBAND ? controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED : 0.0,
-      () -> Math.abs(controller1.getRightX()) >= ControllerConstants.DEADBAND ? -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED : 0.0,
+      () -> (Math.abs(controller1.getRightX()) >= ControllerConstants.DEADBAND ? -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED : 0.0) 
+          * DriveConstants.TELEOP_ROTATION_SPEED_FACTOR,
       controller1.L1(),
       controller1.L2());
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(/*swerveSubsystem, */pivotSubsystem, indexerSubsystem, shooterSubsystem, 

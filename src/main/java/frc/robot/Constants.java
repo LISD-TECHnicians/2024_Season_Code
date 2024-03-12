@@ -90,6 +90,7 @@ public final class Constants {
     public static final double MAX_POSSIBLE_ROTATION_SPEED = MAX_DRIVE_SPEED / SWERVE_RADIUS;
 
     public static final double ROTATION_SPEED_SCALE_FACTOR = 0.75;
+    public static final double TELEOP_ROTATION_SPEED_FACTOR = 2/3;
 
     public static final double MAX_SET_ROTATION_SPEED = MAX_POSSIBLE_ROTATION_SPEED * ROTATION_SPEED_SCALE_FACTOR;
 
