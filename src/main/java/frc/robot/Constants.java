@@ -89,7 +89,7 @@ public final class Constants {
 
     public static final double MAX_POSSIBLE_ROTATION_SPEED = MAX_DRIVE_SPEED / SWERVE_RADIUS;
 
-    public static final double ROTATION_SPEED_SCALE_FACTOR = 0.50;
+    public static final double ROTATION_SPEED_SCALE_FACTOR = 0.75;
 
     public static final double MAX_SET_ROTATION_SPEED = MAX_POSSIBLE_ROTATION_SPEED * ROTATION_SPEED_SCALE_FACTOR;
 
@@ -189,7 +189,7 @@ public final class Constants {
 
     public static final double SHOOTER_SPIN_FACTOR = 0.9;
 
-    public static final double SHOOTER_TIME_UP_DELAY = 0.65;
+    public static final double SHOOTER_TIME_UP_DELAY = 2.00;
     public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
 
     public static final double SHOOTER_TIME_OUT = 4.00;
