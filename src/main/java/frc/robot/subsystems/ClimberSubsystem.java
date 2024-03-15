@@ -5,47 +5,56 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.ControllerConstants;
 
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.Follower;
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class ClimberSubsystem extends SubsystemBase {
-  private final TalonFX climberLeft = new TalonFX(ClimberConstants.CLIMBER_LEFT_ID);
-  private final TalonFX climberRight = new TalonFX(ClimberConstants.CLIMBER_RIGHT_ID);
+  private final CANSparkMax climberLeft = new CANSparkMax(ClimberConstants.CLIMBER_LEFT_ID, MotorType.kBrushless);
+  private final CANSparkMax climberRight = new CANSparkMax(ClimberConstants.CLIMBER_RIGHT_ID, MotorType.kBrushless);
 
   public ClimberSubsystem() {
-    climberLeft.getConfigurator().apply(new TalonFXConfiguration());
-    climberRight.getConfigurator().apply(new TalonFXConfiguration());
+    climberLeft.restoreFactoryDefaults();
+    climberRight.restoreFactoryDefaults();
 
-    climberLeft.setNeutralMode(NeutralModeValue.Brake);
-    climberRight.setNeutralMode(NeutralModeValue.Brake);
+    climberLeft.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
+    climberRight.enableVoltageCompensation(ControllerConstants.NOMINAL_VOLTAGE);
 
-    climberRight.setControl(new Follower(climberLeft.getDeviceID(), true));
+    climberLeft.setSmartCurrentLimit(ClimberConstants.CLIMBER_CURRENT_LIMIT);
+    climberRight.setSmartCurrentLimit(ClimberConstants.CLIMBER_CURRENT_LIMIT);
+
+    climberLeft.setIdleMode(IdleMode.kBrake);
+    climberRight.setIdleMode(IdleMode.kBrake);
+
+    climberLeft.setSoftLimit(SoftLimitDirection.kForward, ClimberConstants.CLIMBER_FORWARD_LIMIT);
+    climberLeft.setSoftLimit(SoftLimitDirection.kReverse, ClimberConstants.CLIMBER_REVERSE_LIMIT);
+
+    climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
+    climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
+
+    climberLeft.setInverted(true);
+
+    climberRight.follow(climberLeft, false);
+
+    climberLeft.burnFlash();
+    climberRight.burnFlash();
   }
-  
+
   public void setClimberSpeed(double speed) {
-    if (speed > 0 && getUpperLimit()) {
-      climberLeft.setVoltage(0); 
-    }
-    else if (speed < 0 && getLowerLimit()) {
-      climberLeft.setVoltage(0);
-    }
-    else {
-      climberLeft.setVoltage(speed * ControllerConstants.NOMINAL_VOLTAGE);
-    }
+    climberLeft.set(speed * ClimberConstants.CLIMBER_SPEED_FACTOR);
   }
 
   public double getClimberPosition() {
-    return climberLeft.getPosition().getValueAsDouble();
+    return climberLeft.getEncoder().getPosition();
   }
 
   public boolean getUpperLimit() {
-    return Math.abs(getClimberPosition() - ClimberConstants.CLIMBER_FORWARD_LIMIT) < ClimberConstants.CLIMBER_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kForward)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   public boolean getLowerLimit() {
-    return Math.abs(getClimberPosition() - ClimberConstants.CLIMBER_REVERSE_LIMIT) < ClimberConstants.CLIMBER_VARIABILITY;
+    return Math.abs(getClimberPosition() - climberLeft.getSoftLimit(SoftLimitDirection.kReverse)) < ClimberConstants.CLIMBER_VARIABILITY;
   }
 
   @Override
