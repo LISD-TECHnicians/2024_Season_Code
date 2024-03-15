@@ -90,7 +90,6 @@ public final class Constants {
     public static final double MAX_POSSIBLE_ROTATION_SPEED = MAX_DRIVE_SPEED / SWERVE_RADIUS;
 
     public static final double ROTATION_SPEED_SCALE_FACTOR = 0.75;
-    public static final double TELEOP_ROTATION_SPEED_FACTOR = 0.65;
 
     public static final double MAX_SET_ROTATION_SPEED = MAX_POSSIBLE_ROTATION_SPEED * ROTATION_SPEED_SCALE_FACTOR;
 
@@ -106,7 +105,7 @@ public final class Constants {
     public static final double PATH_TRANSLATION_I = 0.0; 
     public static final double PATH_TRANSLATION_D = 0.0;
 
-    public static final double PATH_ROTATION_P = 2.05;
+    public static final double PATH_ROTATION_P = 4.0;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
@@ -129,7 +128,7 @@ public final class Constants {
 
     public static final int INTAKE_CURRENT_LIMIT = 70;
 
-    public static final double INTAKE_SPEED_FACTOR = 0.65;
+    public static final double INTAKE_SPEED_FACTOR = 0.70;
     public static final double INTAKE_DEFAULT_SPEED = 1.0;
 
     public static final double INTAKE_TIME_OUT = 7.00;
@@ -143,7 +142,7 @@ public final class Constants {
 
     public static final int NOTE_PRESENT_PORT = 0;
 
-    public static final double INDEXER_SPEED_FACTOR = 0.2;
+    public static final double INDEXER_SPEED_FACTOR = 0.25;
     public static final double INDEXER_DEFAULT_SPEED = 1.0;
   }
 
@@ -223,7 +222,7 @@ public final class Constants {
 
     public static final double LL_OVERRIDE_DEBOUNCE = 3;
 
-    public static final double MIN_TA = 0.1;
-    public static final double MAX_TX = 30;
+    public static final double MIN_TA = 0.3;
+    public static final double MAX_TX = 20;
   }
 }

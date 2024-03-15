@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Manual Shoot"
+            "name": "Auto Shoot"
           }
         },
         {
@@ -32,37 +32,25 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Manual Shoot"
+            "waitTime": 1.5
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "ToFront2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Manual Intake"
+            "pathName": "ToShoot"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 1.5
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Manual Shoot"
+            "name": "Auto Shoot"
           }
         }
       ]

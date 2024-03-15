@@ -56,8 +56,7 @@ public class RobotContainer {
       swerveSubsystem, 
       () -> Math.abs(controller1.getLeftY()) >= ControllerConstants.DEADBAND ? controller1.getLeftY() * DriveConstants.MAX_DRIVE_SPEED : 0.0, 
       () -> Math.abs(controller1.getLeftX()) >= ControllerConstants.DEADBAND ? controller1.getLeftX() * DriveConstants.MAX_DRIVE_SPEED : 0.0,
-      () -> (Math.abs(controller1.getRightX()) >= ControllerConstants.DEADBAND ? -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED : 0.0) 
-          * DriveConstants.TELEOP_ROTATION_SPEED_FACTOR,
+      () -> Math.abs(controller1.getRightX()) >= ControllerConstants.DEADBAND ? -controller1.getRightX() * DriveConstants.MAX_SET_ROTATION_SPEED : 0.0,
       controller1.L1(),
       controller1.L2());
   private final AutoShootCmd autoRunShooterCmd = new AutoShootCmd(/*swerveSubsystem, */pivotSubsystem, indexerSubsystem, shooterSubsystem, 
@@ -94,8 +93,9 @@ public class RobotContainer {
         indexerSubsystem, limelightSubsystem, true));
     NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
         indexerSubsystem, limelightSubsystem, false)); */
-    NamedCommands.registerCommand("Manual Shoot", new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem));
-    NamedCommands.registerCommand("Manual Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem));
+    NamedCommands.registerCommand("Manual Shoot", runShooterCmd);
+    NamedCommands.registerCommand("Auto Shoot", autoRunShooterCmd);
+    NamedCommands.registerCommand("Manual Intake", runIntakeCmd);
 
     configureDriverBindings();
     configureOperatorBindings();
