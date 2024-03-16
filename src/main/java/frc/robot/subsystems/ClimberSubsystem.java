@@ -33,16 +33,19 @@ public class ClimberSubsystem extends SubsystemBase {
     climberLeft.enableSoftLimit(SoftLimitDirection.kForward, true);
     climberLeft.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
-    climberLeft.setInverted(true);
+    climberRight.setSoftLimit(SoftLimitDirection.kForward, ClimberConstants.CLIMBER_FORWARD_LIMIT);
+    climberRight.setSoftLimit(SoftLimitDirection.kReverse, ClimberConstants.CLIMBER_REVERSE_LIMIT);
 
-    climberRight.follow(climberLeft, false);
+    climberRight.enableSoftLimit(SoftLimitDirection.kForward, true);
+    climberRight.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
     climberLeft.burnFlash();
     climberRight.burnFlash();
   }
 
-  public void setClimberSpeed(double speed) {
-    climberLeft.set(speed * ClimberConstants.CLIMBER_SPEED_FACTOR);
+  public void setClimberSpeed(double leftSpeed, double rightSpeed) {
+    climberLeft.set(leftSpeed * ClimberConstants.CLIMBER_SPEED_FACTOR);
+    climberRight.set(rightSpeed * ClimberConstants.CLIMBER_SPEED_FACTOR);
   }
 
   public double getClimberPosition() {

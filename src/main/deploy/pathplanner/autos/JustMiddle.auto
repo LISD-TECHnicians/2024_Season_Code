@@ -1,0 +1,49 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.172635678604691,
+      "y": 4.603476984731747
+    },
+    "rotation": 119.74488129694214
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin Up Time"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToFront3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShoot3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Shoot"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

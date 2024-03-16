@@ -165,7 +165,7 @@ public final class Constants {
 
     public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 39.5;
+    public static final double PIVOT_SHOOTER_OFFSET = 40.75;
 
     public static final double INTAKE_ANGLE = 54.290;
     public static final double TRAVEL_ANGLE = 31.478;
@@ -189,7 +189,7 @@ public final class Constants {
 
     public static final double SHOOTER_SPIN_FACTOR = 0.9;
 
-    public static final double SHOOTER_TIME_UP_DELAY = 2.00;
+    public static final double SHOOTER_TIME_UP_DELAY = 1.50;
     public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
     public static final double SHOOTER_AUTO_SPIN_UP_DELAY = 0.2;
 
@@ -197,12 +197,12 @@ public final class Constants {
   }
 
   public static class ClimberConstants {
-    public static final int CLIMBER_LEFT_ID = 22;
-    public static final int CLIMBER_RIGHT_ID = 23;
+    public static final int CLIMBER_LEFT_ID = 23;
+    public static final int CLIMBER_RIGHT_ID = 22;
 
     public static final int CLIMBER_CURRENT_LIMIT = 80;
 
-    public static final float CLIMBER_FORWARD_LIMIT = 335;
+    public static final float CLIMBER_FORWARD_LIMIT = 123;
     public static final float CLIMBER_REVERSE_LIMIT = 0;
 
     public static final double CLIMBER_SPEED_FACTOR = 1.0;

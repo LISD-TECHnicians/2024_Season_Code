@@ -64,7 +64,7 @@ public class RobotContainer {
       limelightSubsystem);/*
   private final AutoIntakeCmd autoIntakeAlignCmd = new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, indexerSubsystem, 
       limelightSubsystem, true);*/
-  private final ManualClimberCmd runClimberCmd = new ManualClimberCmd(climberSubsystem, () -> controller2.povUp().getAsBoolean(), () -> controller2.povDown().getAsBoolean());
+  private final ManualClimberCmd runClimberCmd = new ManualClimberCmd(climberSubsystem, () -> -controller2.getLeftY(), () -> -controller2.getRightY());
   private final ManualIntakeCmd runIntakeCmd = new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem);
   private final ManualShootCmd runShooterCmd = new ManualShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem);
   private final SetPivotAngleCmd setPivotAngleCmd = new SetPivotAngleCmd(pivotSubsystem, PivotConstants.TRAVEL_ANGLE);
