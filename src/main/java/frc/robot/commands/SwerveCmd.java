@@ -48,8 +48,8 @@ public class SwerveCmd extends Command {
     double rotationSpeed = slowSpeed.getAsBoolean() ? rotationController.getAsDouble() * DriveConstants.SLOW_SPEED_FACTOR : rotationController.getAsDouble();
 
     if (robotOriented.getAsBoolean()) {
-      swerveSpeeds.vxMetersPerSecond = xSpeed;
-      swerveSpeeds.vyMetersPerSecond = ySpeed;
+      swerveSpeeds.vxMetersPerSecond = -xSpeed;
+      swerveSpeeds.vyMetersPerSecond = -ySpeed;
       swerveSpeeds.omegaRadiansPerSecond = rotationSpeed;
     }
     else {

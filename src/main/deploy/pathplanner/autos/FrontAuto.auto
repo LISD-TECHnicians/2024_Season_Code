@@ -14,7 +14,13 @@
         {
           "type": "named",
           "data": {
-            "name": "Auto Shoot"
+            "name": "Spin Up Time"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Shoot"
           }
         },
         {
@@ -24,33 +30,33 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "Manual Intake"
+            "pathName": "ToShoot1"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 1.5
+            "name": "Manual Shoot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "ToShoot"
+            "pathName": "ToFront2"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 1.5
+            "pathName": "ToShoot2"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Auto Shoot"
+            "name": "Manual Shoot"
           }
         }
       ]

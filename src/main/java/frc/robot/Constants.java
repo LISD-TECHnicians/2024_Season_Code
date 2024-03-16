@@ -105,7 +105,7 @@ public final class Constants {
     public static final double PATH_TRANSLATION_I = 0.0; 
     public static final double PATH_TRANSLATION_D = 0.0;
 
-    public static final double PATH_ROTATION_P = 4.0;
+    public static final double PATH_ROTATION_P = 2.5;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
 
@@ -191,8 +191,9 @@ public final class Constants {
 
     public static final double SHOOTER_TIME_UP_DELAY = 2.00;
     public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
+    public static final double SHOOTER_AUTO_SPIN_UP_DELAY = 0.2;
 
-    public static final double SHOOTER_TIME_OUT = 4.00;
+    public static final double SHOOTER_TIME_OUT = 2.50;
   }
 
   public static class ClimberConstants {

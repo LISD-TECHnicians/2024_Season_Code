@@ -3,43 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.9565197312212806,
-        "y": 6.632738356385804
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 2.1275364772951773,
-        "y": 5.9574408037704965
-      },
-      "isLocked": false,
-      "linkedName": "IntialPoseFront"
-    },
-    {
-      "anchor": {
         "x": 2.9541670194451504,
         "y": 7.05486410972822
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.8995004656675984,
+        "y": 6.114215561764457
+      },
+      "isLocked": false,
+      "linkedName": "Front1"
+    },
+    {
+      "anchor": {
+        "x": 1.258149182965033,
+        "y": 5.529873281968787
+      },
       "prevControl": {
-        "x": 1.699968955493467,
-        "y": 5.943188553043772
+        "x": 2.0847797251150064,
+        "y": 5.857675048683432
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Front1"
+      "linkedName": "ShootPose"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.55,
-      "rotationDegrees": -144.70921899607083,
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 179.06421748849667,
       "rotateFast": true
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Manual Intake",
-      "waypointRelativePos": 0.0,
+      "name": "Spin Up",
+      "waypointRelativePos": 0.4,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "Manual Intake"
+                "name": "Spin Up"
               }
             }
           ]
@@ -63,8 +63,8 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -137.2025981617658,
-    "rotateFast": false
+    "rotation": 180.0,
+    "rotateFast": true
   },
   "reversed": false,
   "folder": null,

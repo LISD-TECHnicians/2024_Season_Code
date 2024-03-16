@@ -1,22 +1,27 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.Constants.ShooterConstants;
 
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class SpinUpCmd extends Command {
+public class SpinUpTimeCmd extends Command {
   private final ShooterSubsystem shooterSubsystem;
 
-  public SpinUpCmd(ShooterSubsystem shooterSubsystem) {
+  private final Timer spinUpTimer = new Timer();
+
+  public SpinUpTimeCmd(ShooterSubsystem shooterSubsystem) {
     this.shooterSubsystem = shooterSubsystem;
 
     addRequirements(shooterSubsystem);
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    spinUpTimer.restart();
+  }
 
   @Override
   public void execute() {
@@ -24,12 +29,10 @@ public class SpinUpCmd extends Command {
   }
 
   @Override
-  public void end(boolean interrupted) {
-    shooterSubsystem.setShooterSpeed(0.0);
-  }
+  public void end(boolean interrupted) {}
 
   @Override
   public boolean isFinished() {
-    return false;
+    return spinUpTimer.hasElapsed(ShooterConstants.SHOOTER_AUTO_SPIN_UP_DELAY);
   }
 }

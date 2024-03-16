@@ -36,6 +36,7 @@ import frc.robot.commands.ManualReverseIntakeCmd;
 import frc.robot.commands.ManualShootCmd;
 import frc.robot.commands.SetPivotAngleCmd;
 import frc.robot.commands.SpinUpCmd;
+import frc.robot.commands.SpinUpTimeCmd;
 import frc.robot.commands.SwerveCmd;
 import frc.robot.commands.VisionPoseUpdateCmd;
 
@@ -70,7 +71,8 @@ public class RobotContainer {
   private final ManualIndexerCmd runIndexerCmd = new ManualIndexerCmd(indexerSubsystem, controller2.button(4), controller2.button(2));
   private final ManualReverseIntakeCmd reverseIntakeCmd = new ManualReverseIntakeCmd(intakeSubsystem);
   private final AmpShootCmd ampShootCmd = new AmpShootCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem);
-  private final SpinUpCmd spinUpCmd = new SpinUpCmd(shooterSubsystem, controller2.button(3));
+  private final SpinUpCmd spinUpCmd = new SpinUpCmd(shooterSubsystem);
+  private final SpinUpTimeCmd spinUpTimeCmd = new SpinUpTimeCmd(shooterSubsystem);
 
   private final VisionPoseUpdateCmd visionPoseUpdateCmd = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
 
@@ -96,6 +98,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("Manual Shoot", runShooterCmd);
     NamedCommands.registerCommand("Auto Shoot", autoRunShooterCmd);
     NamedCommands.registerCommand("Manual Intake", runIntakeCmd);
+    NamedCommands.registerCommand("Spin Up", spinUpCmd);
+    NamedCommands.registerCommand("Spin Up Time", spinUpTimeCmd);
 
     configureDriverBindings();
     configureOperatorBindings();
@@ -105,7 +109,6 @@ public class RobotContainer {
     climberSubsystem.setDefaultCommand(runClimberCmd);
     pivotSubsystem.setDefaultCommand(setPivotAngleCmd);
     indexerSubsystem.setDefaultCommand(runIndexerCmd);  
-    shooterSubsystem.setDefaultCommand(spinUpCmd);  
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -124,6 +127,8 @@ public class RobotContainer {
     controller2.L2().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(autoRunShooterCmd);
 
     controller2.povUp().or(controller2.povDown()).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(runClimberCmd);
+
+    controller2.button(3).debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(spinUpCmd);
 
     // controller2.L1().debounce(ControllerConstants.DEBOUNCE_TIME).whileTrue(ampShootCmd);
   }
