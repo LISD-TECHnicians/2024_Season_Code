@@ -8,53 +8,29 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6857167047667438,
-        "y": 3.962125702029182
+        "x": 2.2985634860158615,
+        "y": 4.475206728191234
       },
       "isLocked": false,
       "linkedName": "Front3"
     },
     {
       "anchor": {
-        "x": 0.9303474162503883,
-        "y": 4.603476984731747
+        "x": 2.0705274743882827,
+        "y": 4.831512996359326
       },
       "prevControl": {
-        "x": 1.300905935145204,
-        "y": 3.9763779527559056
+        "x": 2.441085993283098,
+        "y": 4.375440973104168
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.75,
-      "rotationDegrees": 124.44894850483487,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "Spin Up",
-      "waypointRelativePos": 0.2,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "Spin Up Time"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 1.5,
@@ -63,13 +39,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 121.26373169437747,
+    "rotation": 168.3663660010595,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": -178.89829388479362,
+    "rotation": -179.5225462226904,
     "velocity": 0
   },
   "useDefaultConstraints": true

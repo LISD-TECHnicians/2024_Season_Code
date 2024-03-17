@@ -50,6 +50,18 @@
         {
           "type": "named",
           "data": {
+            "name": "Manual Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShoot3Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "Auto Shoot"
           }
         }

@@ -121,6 +121,7 @@ public final class Constants {
     public static final double SWERVE_ROTATION_VARIABILITY = 2.0;
 
     public static final double SLOW_SPEED_FACTOR = 0.45;
+    public static final double SLOW_ROTATION_SPEED_FACTOR = 0.45;
   }
 
   public static class IntakeConstants {
@@ -190,8 +191,8 @@ public final class Constants {
     public static final double SHOOTER_SPIN_FACTOR = 0.9;
 
     public static final double SHOOTER_TIME_UP_DELAY = 1.50;
-    public static final double SHOOTER_TIME_DOWN_DELAY = 2.0;
-    public static final double SHOOTER_AUTO_SPIN_UP_DELAY = 0.2;
+    public static final double SHOOTER_TIME_DOWN_DELAY = 1.50;
+    public static final double SHOOTER_AUTO_SPIN_UP_DELAY = 0.20;
 
     public static final double SHOOTER_TIME_OUT = 2.50;
   }
