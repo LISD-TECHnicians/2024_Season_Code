@@ -6,17 +6,12 @@ import frc.robot.LimelightHelpers;
 
 import frc.robot.Constants.LimelightConstants;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.geometry.Pose2d;
 
 public class LimelightSubsystem extends SubsystemBase {
-  private final DriverStation.Alliance alliance;
-
   public LimelightSubsystem() {
-    this.alliance = DriverStation.getAlliance().get();
-
     // setPipeline(LimelightConstants.LL_ONE, LimelightConstants.NOTE_DETECTION_PIPELINE);
     setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
@@ -42,14 +37,7 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   public Pose2d getPose(String limelightName) {
-    if (alliance == DriverStation.Alliance.Blue) {
-      return LimelightHelpers.getBotPose2d_wpiBlue(limelightName);
-    }
-    else {
-      return LimelightHelpers.getBotPose2d_wpiRed(limelightName);
-    }   
-
-    // return LimelightHelpers.getBotPose2d(limelightName);
+    return LimelightHelpers.getBotPose2d_wpiBlue(limelightName);
   }
 
   public double getFiducialID(String limelightName) {

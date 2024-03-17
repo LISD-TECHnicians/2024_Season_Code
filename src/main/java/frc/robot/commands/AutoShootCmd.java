@@ -32,7 +32,7 @@ public class AutoShootCmd extends Command {
     this.shooterSubsystem = shooterSubsystem;
     this.limelightSubsystem = limelightSubsystem;
 
-    addRequirements(shooterSubsystem, pivotSubsystem, indexerSubsystem, limelightSubsystem);
+    addRequirements(shooterSubsystem, pivotSubsystem, indexerSubsystem);
   }
 
   @Override

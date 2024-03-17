@@ -3,43 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.8971580165382558,
-        "y": 4.118900460023142
+        "x": 2.9541670194451504,
+        "y": 7.05486410972822
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6999689554934672,
-        "y": 4.090395958569695
+        "x": 1.258149182965033,
+        "y": 5.373098523974825
       },
       "isLocked": false,
-      "linkedName": "Front3"
+      "linkedName": "Front1"
     },
     {
       "anchor": {
-        "x": 0.9303474162503883,
-        "y": 4.603476984731747
+        "x": 3.0111760223520454,
+        "y": 5.54412553269551
       },
       "prevControl": {
-        "x": 1.300905935145204,
-        "y": 3.9763779527559056
+        "x": 1.1156266756977962,
+        "y": 5.501368780515339
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Front2"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.75,
-      "rotationDegrees": 124.44894850483487,
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": 180.0,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Spin Up",
-      "waypointRelativePos": 0.2,
+      "name": "Intake",
+      "waypointRelativePos": 0.45,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +47,7 @@
             {
               "type": "named",
               "data": {
-                "name": "Spin Up Time"
+                "name": "Manual Intake"
               }
             }
           ]
@@ -63,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 121.26373169437747,
+    "rotation": -179.21517539700815,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": -178.89829388479362,
+    "rotation": -150.8025139539355,
     "velocity": 0
   },
   "useDefaultConstraints": true
