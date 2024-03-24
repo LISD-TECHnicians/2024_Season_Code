@@ -24,6 +24,12 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Auto Shoot"
@@ -36,27 +42,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "Auto Shoot"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "ToFront3FromFront2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Manual Intake"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "ToShoot3Middle"
+            "waitTime": 0.5
           }
         },
         {

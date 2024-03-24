@@ -167,7 +167,7 @@ public final class Constants {
 
     public static final double PIVOT_INITIAL_ANGLE = 60.735;
 
-    public static final double PIVOT_SHOOTER_OFFSET = 40.75;
+    public static final double PIVOT_SHOOTER_OFFSET = 41.75;
 
     public static final double INTAKE_ANGLE = 56.50;
     public static final double TRAVEL_ANGLE = 31.478;
