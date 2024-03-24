@@ -1,0 +1,73 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.9160951655236648,
+      "y": 4.418197725284339
+    },
+    "rotation": 122.85572195043298
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToFront3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShoot3Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToFar5FromFront3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShootFar5"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Shoot"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
