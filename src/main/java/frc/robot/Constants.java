@@ -7,6 +7,7 @@ import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.util.Color;
 
 public final class Constants {
   public static class ControllerConstants {
@@ -168,7 +169,7 @@ public final class Constants {
 
     public static final double PIVOT_SHOOTER_OFFSET = 40.75;
 
-    public static final double INTAKE_ANGLE = 54.290;
+    public static final double INTAKE_ANGLE = 56.50;
     public static final double TRAVEL_ANGLE = 31.478;
     public static final double CLIMBER_ANGLE = TRAVEL_ANGLE;
     public static final double SHOOT_ANGLE = 56.5;
@@ -226,5 +227,15 @@ public final class Constants {
 
     public static final double MIN_TA = 0.3;
     public static final double MAX_TX = 20;
+  }
+
+  public static final class LEDConstants {
+    public static final int CANDLE_ID = 24;
+
+    public static final double CANDLE_BRIGHTNESS = 1.0;
+
+    public static final Color RED = new Color(255, 0, 0);
+    public static final Color GREEN = new Color(0, 255, 0);
+    public static final Color BLUE = new Color(0, 0, 255);
   }
 }

@@ -21,6 +21,7 @@ import frc.robot.Constants.PivotConstants;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -34,6 +35,7 @@ import frc.robot.commands.ManualIndexerCmd;
 import frc.robot.commands.ManualIntakeCmd;
 import frc.robot.commands.ManualReverseIntakeCmd;
 import frc.robot.commands.ManualShootCmd;
+import frc.robot.commands.SetLEDCmd;
 import frc.robot.commands.SetPivotAngleCmd;
 import frc.robot.commands.SpinUpCmd;
 import frc.robot.commands.SpinUpTimeCmd;
@@ -52,6 +54,7 @@ public class RobotContainer {
   private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final PivotSubsystem pivotSubsystem = new PivotSubsystem();
+  private final LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   private final SwerveCmd joystickSwerve = new SwerveCmd(
       swerveSubsystem, 
@@ -73,6 +76,7 @@ public class RobotContainer {
   private final AmpShootCmd ampShootCmd = new AmpShootCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem, shooterSubsystem);
   private final SpinUpCmd spinUpCmd = new SpinUpCmd(shooterSubsystem);
   private final SpinUpTimeCmd spinUpTimeCmd = new SpinUpTimeCmd(shooterSubsystem);
+  private final SetLEDCmd setLEDCmd = new SetLEDCmd(ledSubsystem, indexerSubsystem);
 
   private final VisionPoseUpdateCmd visionPoseUpdateCmd = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
 
@@ -88,13 +92,6 @@ public class RobotContainer {
   private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
-    /*NamedCommands.registerCommand("Auto Shoot", new AutoShootCmd(pivotSubsystem, indexerSubsystem, shooterSubsystem, 
-        limelightSubsystem).asProxy());
-    NamedCommands.registerCommand("Intake", new ManualIntakeCmd(intakeSubsystem, pivotSubsystem, indexerSubsystem).asProxy());
-    NamedCommands.registerCommand("Auto Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
-        indexerSubsystem, limelightSubsystem, true));
-    NamedCommands.registerCommand("Auto No Align Intake", new AutoIntakeCmd(swerveSubsystem, intakeSubsystem, pivotSubsystem, 
-        indexerSubsystem, limelightSubsystem, false)); */
     NamedCommands.registerCommand("Manual Shoot", runShooterCmd);
     NamedCommands.registerCommand("Auto Shoot", autoRunShooterCmd);
     NamedCommands.registerCommand("Manual Intake", runIntakeCmd);
@@ -109,6 +106,7 @@ public class RobotContainer {
     climberSubsystem.setDefaultCommand(runClimberCmd);
     pivotSubsystem.setDefaultCommand(setPivotAngleCmd);
     indexerSubsystem.setDefaultCommand(runIndexerCmd);  
+    ledSubsystem.setDefaultCommand(setLEDCmd);
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);

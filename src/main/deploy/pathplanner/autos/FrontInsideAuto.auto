@@ -1,0 +1,79 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.258149182965033,
+      "y": 5.529873281968787
+    },
+    "rotation": 179.07595464722735
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToFront2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShoot2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Shoot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToFront3Base"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Manual Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ToShoot3Middle"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Shoot"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
